@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdint>
-
+#include <iostream>
 namespace containers
 {
 
@@ -9,10 +9,10 @@ template <typename T, typename TSize>
 class map
 {
 public:
-    map(TSize size) : size_{size}
+    map(TSize allocated_size)
     {
-        keys_ = new TSize[size];
-        values_ = new T[size];
+        keys_ = new TSize[allocated_size];
+        values_ = new T[allocated_size];
     }
     virtual ~map()
     {
@@ -30,14 +30,21 @@ public:
     T &operator[](TSize index)
     {
         TSize i{};
-        for (; i < size_; ++i)
+        bool found{false};
+        for (; i < size_ && !found; ++i)
         {
+
             if (keys_[i] == index)
             {
+                found = true;
                 break;
             }
         }
 
+        if (!found)
+        {
+            keys_[size_++] = i;
+        }
         TSize index_in_keys = keys_[i];
         return values_[index_in_keys];
     }
