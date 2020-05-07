@@ -43,7 +43,7 @@ public:
 
         if (!found)
         {
-            keys_[size_++] = i;
+            keys_[size_++] = index;
         }
         TSize index_in_keys = keys_[i];
         return values_[index_in_keys];

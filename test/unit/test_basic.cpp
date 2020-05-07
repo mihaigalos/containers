@@ -47,7 +47,7 @@ TEST_F(Fixture, AddWorks_WhenTypical)
     ASSERT_EQ(actual.j, 2);
 }
 
-TEST_F(Fixture, AddMultiple_WhenTypical)
+TEST_F(Fixture, AddMultiple_WhenInSequence)
 {
 
     sut_[0] = DemoStructure{1, 2};
@@ -57,4 +57,19 @@ TEST_F(Fixture, AddMultiple_WhenTypical)
     ASSERT_EQ(sut_[0].j, 2);
     ASSERT_EQ(sut_[1].i, 3);
     ASSERT_EQ(sut_[1].j, 4);
+}
+
+TEST_F(Fixture, AddMultiple_WhenRandom)
+{
+
+    sut_[0] = DemoStructure{1, 2};
+    sut_[2] = DemoStructure{5, 6};
+    sut_[1] = DemoStructure{3, 4};
+
+    ASSERT_EQ(sut_[0].i, 1);
+    ASSERT_EQ(sut_[0].j, 2);
+    ASSERT_EQ(sut_[1].i, 3);
+    ASSERT_EQ(sut_[1].j, 4);
+    ASSERT_EQ(sut_[2].i, 5);
+    ASSERT_EQ(sut_[2].j, 6);
 }
