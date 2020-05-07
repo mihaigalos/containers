@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "containers/map.h"
+#include "containers/dynamic_map.h"
 
 struct DemoStructure
 {
@@ -23,7 +23,7 @@ protected:
     }
 
     uint16_t expected_size{10};
-    containers::map<DemoStructure, decltype(expected_size)> sut_{expected_size};
+    containers::dynamic_map<DemoStructure, decltype(expected_size)> sut_{expected_size};
 };
 
 TEST_F(Fixture, ConstructWorks_WhenTypical)

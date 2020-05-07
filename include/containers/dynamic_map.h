@@ -7,15 +7,15 @@ namespace containers
 {
 
 template <typename T, typename TSize>
-class map
+class dynamic_map
 {
 public:
-    map(TSize allocated_size)
+    dynamic_map(TSize allocated_size)
     {
         keys_ = static_cast<TSize *>(malloc(allocated_size));
         values_ = static_cast<T *>(malloc(allocated_size));
     }
-    virtual ~map()
+    virtual ~dynamic_map()
     {
         clear();
         free(keys_);
