@@ -11,8 +11,8 @@ class map
 public:
     map(TSize size) : size_{size}
     {
-        keys_ = new T[size];
-        values_ = new TSize[size];
+        keys_ = new TSize[size];
+        values_ = new T[size];
     }
     virtual ~map()
     {
@@ -27,9 +27,24 @@ public:
         size_ = {};
     }
 
+    T &operator[](TSize index)
+    {
+        TSize i{};
+        for (; i < size_; ++i)
+        {
+            if (keys_[i] == index)
+            {
+                break;
+            }
+        }
+
+        TSize index_in_keys = keys_[i];
+        return values_[index_in_keys];
+    }
+
 private:
-    T *keys_; // these members are intentionally raw pointers instead of smart ones, for embdeded architectures with no STL.
-    TSize *values_;
+    TSize *keys_; // these members are intentionally raw pointers instead of smart ones, for embdeded architectures with no STL.
+    T *values_;
     TSize size_{};
 };
 

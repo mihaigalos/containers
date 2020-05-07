@@ -33,3 +33,15 @@ TEST_F(Fixture, ClearWorks_WhenTypical)
 
     ASSERT_EQ(sut_.size(), 0);
 }
+
+TEST_F(Fixture, AddWorks_WhenTypical)
+{
+    auto initial_size{10};
+    containers::map<DemoStructure, decltype(initial_size)> sut_{initial_size};
+
+    sut_[0] = DemoStructure{1, 2};
+    auto actual = sut_[0];
+
+    ASSERT_EQ(actual.i, 1);
+    ASSERT_EQ(actual.j, 2);
+}
