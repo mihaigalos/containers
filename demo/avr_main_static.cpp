@@ -1,4 +1,4 @@
-#include "../include/containers/map.h"
+#include "../include/containers/static_map.h"
 
 #include <avr/io.h>
 
@@ -19,7 +19,7 @@ struct DemoStructure
 };
 
 uint16_t expected_size{10};
-containers::map<DemoStructure, decltype(expected_size)> sut_{expected_size};
+containers::static_map<DemoStructure, uint16_t, 10> sut_;
 
 int main()
 {
