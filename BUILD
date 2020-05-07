@@ -19,7 +19,10 @@ DEFAULT_TEST_DEPS = [
 
 cc_library(
     name = "sut",
-    srcs = glob(["src/**/*.cpp"]),
+    srcs = glob(
+        ["src/**/*.cpp"],
+        exclude = ["src/avr_main.cpp"],
+    ),
     hdrs = glob(["include/**/*.h"]),
     copts = DEFAULT_COMPILER_OPTIONS,
     strip_include_prefix = "include",

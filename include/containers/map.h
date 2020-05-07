@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdlib.h>
 
 namespace containers
 {
@@ -11,14 +12,14 @@ class map
 public:
     map(TSize allocated_size)
     {
-        keys_ = new TSize[allocated_size];
-        values_ = new T[allocated_size];
+        keys_ = static_cast<TSize *>(malloc(allocated_size));
+        values_ = static_cast<T *>(malloc(allocated_size));
     }
     virtual ~map()
     {
         clear();
-        delete[] keys_;
-        delete[] values_;
+        free(keys_);
+        free(values_);
     }
 
     TSize size() const { return size_; }
