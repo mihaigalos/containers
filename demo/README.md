@@ -6,7 +6,7 @@ Usage of <300 bytes of flash (330-42 static data).
 Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
 
 ```
-➜  demo git:(master) ✗ avr-gcc -std=c++14  -Os -mmcu=atmega328p  avr_main_static.cpp -o avr_main_static
+➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static.cpp -o avr_main_static
 
 ➜  demo git:(master) ✗ avr-size avr_main_static
    text    data     bss     dec     hex filename
@@ -28,7 +28,7 @@ Since the example uses static data to circumvent not having extra *volatile*-qua
 About 1kB of flash usage.
 
 ```
-➜  demo git:(master) ✗ avr-gcc -std=c++14  -Os -mmcu=atmega328p  avr_main_dynamic.cpp -o avr_main_dynamic
+➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_dynamic.cpp -o avr_main_dynamic
 
 ➜  demo git:(master) ✗ avr-size avr_main_dynamic                                                         
    text    data     bss     dec     hex filename
