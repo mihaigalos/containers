@@ -22,7 +22,6 @@ protected:
 
     T sut_;
 };
-// containers::dynamic_map<uint16_t, DemoStructure, 10>
 
 using MyTypes = ::testing::Types<containers::dynamic_map<uint16_t, DemoStructure, 10>,
                                  containers::static_map<uint16_t, DemoStructure, 10>>;
