@@ -7,10 +7,6 @@ struct DemoStructure
 {
     uint16_t i;
     uint16_t j;
-    bool operator==(const DemoStructure &rhs)
-    {
-        return i == rhs.i && j == rhs.j;
-    }
 };
 
 class Fixture : public ::testing::Test
