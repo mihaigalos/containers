@@ -18,12 +18,10 @@ struct DemoStructure
     uint8_t j;
 };
 
-uint16_t expected_size{10};
-containers::dynamic_map<DemoStructure, decltype(expected_size)> sut_{expected_size};
+containers::dynamic_map<uint16_t, DemoStructure, 10> sut_;
 
 int main()
 {
-
     sut_[0] = DemoStructure{1, 2};
     auto actual = sut_[0];
 
