@@ -6,7 +6,7 @@
 namespace containers
 {
 
-template <typename TValue, typename TKey, TKey MaxSize>
+template <typename TKey, typename TValue, TKey MaxSize>
 class static_map
 {
 public:

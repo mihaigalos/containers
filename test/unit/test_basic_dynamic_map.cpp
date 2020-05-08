@@ -23,7 +23,7 @@ protected:
     }
 
     uint16_t expected_size{10};
-    containers::dynamic_map<DemoStructure, decltype(expected_size)> sut_{expected_size};
+    containers::dynamic_map<decltype(expected_size), DemoStructure> sut_{expected_size};
 };
 
 TEST_F(Fixture, ConstructWorks_WhenTypical)

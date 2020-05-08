@@ -6,7 +6,7 @@
 namespace containers
 {
 
-template <typename TValue, typename TKey>
+template <typename TKey, typename TValue>
 class dynamic_map
 {
 public:

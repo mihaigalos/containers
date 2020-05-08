@@ -23,7 +23,7 @@ protected:
     }
 
     uint16_t expected_size{10};
-    containers::static_map<DemoStructure, uint16_t, 10> sut_;
+    containers::static_map<uint16_t, DemoStructure, 10> sut_;
 };
 
 TEST_F(Fixture, ConstructWorks_WhenTypical)
