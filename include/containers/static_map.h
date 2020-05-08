@@ -6,19 +6,19 @@
 namespace containers
 {
 
-template <typename T, typename TSize, TSize MaxSize>
+template <typename TValue, typename TKey, TKey MaxSize>
 class static_map
 {
 public:
-    TSize size() const { return size_; }
+    TKey size() const { return size_; }
     void clear()
     {
         size_ = {};
     }
 
-    T &operator[](TSize index)
+    TValue &operator[](TKey index)
     {
-        TSize i{};
+        TKey i{};
         bool found{false};
         for (; i < size_ && !found; ++i)
         {
@@ -34,14 +34,14 @@ public:
         {
             keys_[size_++] = index;
         }
-        TSize index_in_keys = keys_[i];
+        TKey index_in_keys = keys_[i];
         return values_[index_in_keys];
     }
 
 private:
-    TSize keys_[MaxSize];
-    T values_[MaxSize];
-    TSize size_{};
+    TKey keys_[MaxSize];
+    TValue values_[MaxSize];
+    TKey size_{};
 };
 
 } // namespace containers

@@ -6,14 +6,14 @@
 namespace containers
 {
 
-template <typename T, typename TSize>
+template <typename TValue, typename TKey>
 class dynamic_map
 {
 public:
-    dynamic_map(TSize allocated_size)
+    dynamic_map(TKey allocated_size)
     {
-        keys_ = static_cast<TSize *>(malloc(allocated_size));
-        values_ = static_cast<T *>(malloc(allocated_size));
+        keys_ = static_cast<TKey *>(malloc(allocated_size));
+        values_ = static_cast<TValue *>(malloc(allocated_size));
     }
     virtual ~dynamic_map()
     {
@@ -22,15 +22,15 @@ public:
         free(values_);
     }
 
-    TSize size() const { return size_; }
+    TKey size() const { return size_; }
     void clear()
     {
         size_ = {};
     }
 
-    T &operator[](TSize index)
+    TValue &operator[](TKey index)
     {
-        TSize i{};
+        TKey i{};
         bool found{false};
         for (; i < size_ && !found; ++i)
         {
@@ -46,14 +46,14 @@ public:
         {
             keys_[size_++] = index;
         }
-        TSize index_in_keys = keys_[i];
+        TKey index_in_keys = keys_[i];
         return values_[index_in_keys];
     }
 
 private:
-    TSize *keys_; // these members are intentionally raw pointers instead of smart ones, for embdeded architectures with no STL.
-    T *values_;
-    TSize size_{};
+    TKey *keys_; // these members are intentionally raw pointers instead of smart ones, for embdeded architectures with no STL.
+    TValue *values_;
+    TKey size_{};
 };
 
 } // namespace containers
