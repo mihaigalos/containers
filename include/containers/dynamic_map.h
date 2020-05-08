@@ -51,7 +51,7 @@ public:
     }
 
 private:
-    TKey *keys_; // these members are intentionally raw pointers instead of smart ones, for embdeded architectures with no STL.
+    TKey *keys_; // these members are intentionally raw pointers instead of smart ones, for embedded architectures with no STL.
     TValue *values_;
     TKey size_{};
 };
