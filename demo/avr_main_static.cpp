@@ -2,16 +2,6 @@
 
 #include <avr/io.h>
 
-void operator delete(void *ptr, unsigned int foo)
-{
-    delete ptr;
-}
-
-void operator delete(void *ptr)
-{
-    delete ptr;
-}
-
 struct DemoStructure
 {
     uint8_t i;

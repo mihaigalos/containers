@@ -7,11 +7,11 @@ Usage of about 350 bytes of flash, example includes RAM usage 10*structure of 2 
 ```
 ➜  demo git:(master) ✗ avr-gcc -std=c++14  -Os -mmcu=atmega328p  avr_main_static.cpp -o avr_main_static
 
-➜  demo git:(master) ✗ avr-size avr_main_static                          
+➜  demo git:(master) ✗ avr-size avr_main_static
    text    data     bss     dec     hex filename
-    356       2      42     400     190 avr_main_static
+    352       2      42     396     18c avr_main_static
 
-➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_static                
+➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_static
 00000086 W containers::static_map<DemoStructure, unsigned int, 10u>::operator[](unsigned int)
 00000050 T main
 00000042 B sut_
@@ -19,9 +19,7 @@ Usage of about 350 bytes of flash, example includes RAM usage 10*structure of 2 
 00000022 T __do_copy_data
 00000016 T __do_clear_bss
 00000012 T __tablejump2__
-00000010 t _GLOBAL__sub_I__ZdlPvj
-00000002 T operator delete(void*, unsigned int)
-00000002 T operator delete(void*)
+00000010 t _GLOBAL__sub_I_expected_size
 00000002 D expected_size
 ```
 
