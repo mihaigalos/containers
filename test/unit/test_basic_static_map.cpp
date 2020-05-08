@@ -22,7 +22,6 @@ protected:
         sut_.clear();
     }
 
-    uint16_t expected_size{10};
     containers::static_map<uint16_t, DemoStructure, 10> sut_;
 };
 

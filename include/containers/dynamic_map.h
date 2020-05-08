@@ -6,14 +6,14 @@
 namespace containers
 {
 
-template <typename TKey, typename TValue>
+template <typename TKey, typename TValue, TKey MaxSize>
 class dynamic_map
 {
 public:
-    dynamic_map(TKey allocated_size)
+    dynamic_map()
     {
-        keys_ = static_cast<TKey *>(malloc(allocated_size));
-        values_ = static_cast<TValue *>(malloc(allocated_size));
+        keys_ = static_cast<TKey *>(malloc(MaxSize));
+        values_ = static_cast<TValue *>(malloc(MaxSize));
     }
     virtual ~dynamic_map()
     {
