@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 DEFAULT_COMPILER_OPTIONS = [
     "-fdiagnostics-color",
+    "-fuse-ld=lld",
     "-DTESTING",
     "-DLOGGING",
     "-Wall",
