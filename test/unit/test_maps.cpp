@@ -6,8 +6,8 @@
 
 struct DemoStructure
 {
-    uint16_t i;
-    uint16_t j;
+    uint16_t i{0xFFFF};
+    uint16_t j{0xFFFF};
 };
 
 template <typename T>
@@ -91,6 +91,28 @@ TYPED_TEST(Fixture, AddMultiple_WhenRandom2)
     ASSERT_EQ(this->sut_[1].j, 4);
     ASSERT_EQ(this->sut_[2].i, 5);
     ASSERT_EQ(this->sut_[2].j, 6);
+    ASSERT_EQ(this->sut_[3].i, 7);
+    ASSERT_EQ(this->sut_[3].j, 8);
+    ASSERT_EQ(this->sut_[4].i, 9);
+    ASSERT_EQ(this->sut_[4].j, 10);
+}
+
+TYPED_TEST(Fixture, AddMultipleDeleteOne_WhenRandom)
+{
+
+    this->sut_[0] = DemoStructure{1, 2};
+    this->sut_[2] = DemoStructure{5, 6};
+    this->sut_[4] = DemoStructure{9, 10};
+    this->sut_[1] = DemoStructure{3, 4};
+    this->sut_[2] = DemoStructure{};
+    this->sut_[3] = DemoStructure{7, 8};
+
+    ASSERT_EQ(this->sut_[0].i, 1);
+    ASSERT_EQ(this->sut_[0].j, 2);
+    ASSERT_EQ(this->sut_[1].i, 3);
+    ASSERT_EQ(this->sut_[1].j, 4);
+    ASSERT_EQ(this->sut_[2].i, 0xFFFF);
+    ASSERT_EQ(this->sut_[2].j, 0xFFFF);
     ASSERT_EQ(this->sut_[3].i, 7);
     ASSERT_EQ(this->sut_[3].j, 8);
     ASSERT_EQ(this->sut_[4].i, 9);
