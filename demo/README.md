@@ -1,6 +1,6 @@
 ### Simplified container implementations for AVR
 
-##### Statically allocated map
+##### Statically allocated unordered map
 
 Usage of about 350 bytes of flash, example includes RAM usage 10*structure of 2 bytes.
 
@@ -24,7 +24,7 @@ Usage of about 350 bytes of flash, example includes RAM usage 10*structure of 2 
 ```
 
 
-##### Dynamically allocated map
+##### Dynamically allocated unordered map
 
 About 1kB of flash usage.
 
