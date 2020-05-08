@@ -3,7 +3,7 @@
 ##### Statically allocated unordered map
 
 Usage of <300 bytes of flash (330-42 static data).
-Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode for zero-initialize the .bss section.
+Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
 
 ```
 ➜  demo git:(master) ✗ avr-gcc -std=c++14  -Os -mmcu=atmega328p  avr_main_static.cpp -o avr_main_static
