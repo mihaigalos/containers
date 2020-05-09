@@ -1,6 +1,6 @@
 ### Containers
 
-Manual C++ implementation of STL containers for devices without one, like AVR.
+Simplified manual C++ implementation of STL containers for devices without one, like AVR.
 
 ### Building and testing
 
