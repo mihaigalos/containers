@@ -71,7 +71,6 @@ TYPED_TEST(Fixture, AddMultiple_WhenRandom)
 
 TYPED_TEST(Fixture, AddMultiple_WhenRandom2)
 {
-
     this->sut_[0] = DemoStructure{1, 2};
     this->sut_[2] = DemoStructure{5, 6};
     this->sut_[4] = DemoStructure{9, 10};
@@ -92,7 +91,6 @@ TYPED_TEST(Fixture, AddMultiple_WhenRandom2)
 
 TYPED_TEST(Fixture, AddMultipleDeleteOne_WhenRandom)
 {
-
     this->sut_[0] = DemoStructure{1, 2};
     this->sut_[2] = DemoStructure{5, 6};
     this->sut_[4] = DemoStructure{9, 10};

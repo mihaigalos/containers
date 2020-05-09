@@ -20,7 +20,6 @@ protected:
 
 TEST_F(Fixture, CapacityIncreased_WhenMoreAsInitial)
 {
-
     sut_[0] = DemoStructure{1, 2};
     sut_[2] = DemoStructure{5, 6};
     sut_[1] = DemoStructure{3, 4};
@@ -63,7 +62,6 @@ TEST_F(Fixture, AddMultipleAssert2_WhenRandom)
 
 TEST_F(Fixture, CapacityIncreasedTwice_WhenMoreAsInitial)
 {
-
     sut_[0] = DemoStructure{1, 2};
     sut_[2] = DemoStructure{5, 6};
     sut_[4] = DemoStructure{9, 10};
@@ -76,7 +74,6 @@ TEST_F(Fixture, CapacityIncreasedTwice_WhenMoreAsInitial)
 
 TEST_F(Fixture, AddMultipleDeleteOne_WhenRandom)
 {
-
     sut_[0] = DemoStructure{1, 2};
     sut_[2] = DemoStructure{5, 6};
     sut_[4] = DemoStructure{9, 10};
