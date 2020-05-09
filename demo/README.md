@@ -5,7 +5,7 @@
 Usage of <300 bytes of flash (292-31 static data).
 Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
 
-```bash
+```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_vector.cpp -o avr_main_static_vector
 
 ➜  demo git:(master) ✗ avr-size avr_main_static_vector                          
@@ -27,7 +27,7 @@ Since the example uses static data to circumvent not having extra *volatile*-qua
 Usage of <300 bytes of flash (330-42 static data).
 Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
 
-```bash
+```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_map.cpp -o avr_main_static_map
 
 ➜  demo git:(master) ✗ avr-size avr_main_static_map
@@ -49,7 +49,7 @@ Since the example uses static data to circumvent not having extra *volatile*-qua
 
 About 2kB of flash usage.
 
-```bash
+```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_dynamic_map.cpp -o avr_main_dynamic_map
 
 ➜  demo git:(master) ✗ avr-size avr_main_dynamic_map
