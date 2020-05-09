@@ -6,13 +6,13 @@ Usage of <300 bytes of flash (330-42 static data).
 Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
 
 ```
-➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static.cpp -o avr_main_static
+➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_map.cpp -o avr_main_static_map
 
-➜  demo git:(master) ✗ avr-size avr_main_static
+➜  demo git:(master) ✗ avr-size avr_main_static_map
    text    data     bss     dec     hex filename
-    330       0      42     372     174 avr_main_static
+    330       0      42     372     174 avr_main_static_map
 
-➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_static
+➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_static_map
 00000086 W containers::static_map<unsigned int, DemoStructure, 10u>::operator[](unsigned int)
 00000050 T main
 00000042 B sut_
@@ -28,13 +28,13 @@ Since the example uses static data to circumvent not having extra *volatile*-qua
 About 2kB of flash usage.
 
 ```
-➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_dynamic.cpp -o avr_main_dynamic
+➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_dynamic_map.cpp -o avr_main_dynamic_map
 
-➜  demo git:(master) ✗ avr-size avr_main_dynamic
+➜  demo git:(master) ✗ avr-size avr_main_dynamic_map
    text    data     bss     dec     hex filename
-   1724      14      14    1752     6d8 avr_main_dynamic
+   1724      14      14    1752     6d8 avr_main_dynamic_map
 
-➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_dynamic
+➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_dynamic_map
 00000396 T realloc
 00000304 T malloc
 00000274 T free
