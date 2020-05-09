@@ -25,11 +25,5 @@ public:
     {
         return (*this)[--this->size_];
     }
-
-    // TValue &pop_back() &&
-    // {
-    //     --this->size_;
-    //     return (*this)[--this->size_];
-    // }
 };
 } // namespace containers
