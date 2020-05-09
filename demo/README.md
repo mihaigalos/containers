@@ -2,7 +2,7 @@
 
 ##### Statically allocated vector
 
-Usage of <300 bytes of flash (292-31 static data).
+Usage of <300 bytes of flash (318-31 static data).
 Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
 
 ```c++
