@@ -10,7 +10,7 @@ template <typename TKey, typename TValue, TKey MaxSize>
 class static_map
 {
 public:
-    TKey size() const { return size_; }
+    auto size() const { return size_; }
     void clear()
     {
         size_ = {};
