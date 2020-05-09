@@ -47,8 +47,6 @@ TEST_F(Fixture, PushBack_WhenTypicalTwoElement)
     sut_.push_back(data);
     sut_.push_back(data1);
 
-    ASSERT_EQ(sut_[0].i, 1);
-    ASSERT_EQ(sut_[0].j, 2);
     ASSERT_EQ(sut_[1].i, 3);
     ASSERT_EQ(sut_[1].j, 4);
 }
@@ -63,10 +61,6 @@ TEST_F(Fixture, PushBack_WhenTypicalThreeElement)
     sut_.push_back(data2);
     sut_.push_back(data1);
 
-    ASSERT_EQ(sut_[0].i, 1);
-    ASSERT_EQ(sut_[0].j, 2);
-    ASSERT_EQ(sut_[1].i, 5);
-    ASSERT_EQ(sut_[1].j, 6);
     ASSERT_EQ(sut_[2].i, 3);
     ASSERT_EQ(sut_[2].j, 4);
 }
