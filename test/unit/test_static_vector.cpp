@@ -92,7 +92,6 @@ TEST_F(Fixture, PopPush_WhenTypical)
     sut_.push_back(data1);
     sut_.push_back(data2);
     auto actual = sut_.pop_back();
-
     sut_.push_back(data3);
 
     ASSERT_EQ(actual, data2);
