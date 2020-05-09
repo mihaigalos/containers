@@ -37,7 +37,7 @@ public:
         return values_[index_in_keys];
     }
 
-private:
+protected:
     TKey keys_[MaxSize];
     TValue values_[MaxSize];
     TKey size_{};
