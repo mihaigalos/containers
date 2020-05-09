@@ -98,6 +98,23 @@ TEST_F(Fixture, PopPush_WhenTypical)
     ASSERT_EQ(actual, data2);
 }
 
+TEST_F(Fixture, PopPushPop_WhenTypical)
+{
+    DemoStructure data{1, 2};
+    DemoStructure data1{3, 4};
+    DemoStructure data2{5, 6};
+    DemoStructure data3{7, 8};
+
+    sut_.push_back(data);
+    sut_.push_back(data1);
+    sut_.push_back(data2);
+    sut_.pop_back();
+    sut_.push_back(data3);
+    auto actual = sut_.pop_back();
+
+    ASSERT_EQ(actual, data3);
+}
+
 TEST_F(Fixture, PushPopPushPop_WhenTypical)
 {
     DemoStructure data{1, 2};
