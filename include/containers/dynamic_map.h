@@ -5,14 +5,14 @@
 namespace containers
 {
 
-template <typename TKey, typename TValue, TKey MaxSize>
+template <typename TKey, typename TValue, TKey InitialMaxSize>
 class dynamic_map
 {
 public:
-    dynamic_map() : max_size_{MaxSize}
+    dynamic_map() : max_size_{InitialMaxSize}
     {
-        keys_ = static_cast<TKey *>(malloc(MaxSize));
-        values_ = static_cast<TValue *>(malloc(MaxSize));
+        keys_ = static_cast<TKey *>(malloc(InitialMaxSize));
+        values_ = static_cast<TValue *>(malloc(InitialMaxSize));
     }
     virtual ~dynamic_map()
     {
@@ -56,8 +56,8 @@ private:
     {
         if (size_ == max_size_)
         {
-            keys_ = static_cast<TKey *>(realloc(keys_, 2 * MaxSize));
-            values_ = static_cast<TValue *>(realloc(values_, 2 * MaxSize));
+            keys_ = static_cast<TKey *>(realloc(keys_, 2 * max_size_));
+            values_ = static_cast<TValue *>(realloc(values_, 2 * max_size_));
             max_size_ = 2 * max_size_;
         }
     }
