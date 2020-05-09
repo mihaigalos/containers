@@ -32,7 +32,9 @@ TYPED_TEST(Fixture, ConstructWorks_WhenTypical)
 TYPED_TEST(Fixture, ClearWorks_WhenTypical)
 {
     this->sut_[0] = DemoStructure{1, 2};
+
     this->sut_.clear();
+
     ASSERT_EQ(this->sut_.size(), 0);
 }
 

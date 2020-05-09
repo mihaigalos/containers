@@ -28,19 +28,37 @@ TEST_F(Fixture, CapacityIncreased_WhenMoreAsInitial)
     ASSERT_EQ(sut_.max_size(), 4);
 }
 
-TEST_F(Fixture, AddMultiple_WhenRandom)
+TEST_F(Fixture, AddMultipleAssert0_WhenRandom)
 {
+    auto expected = DemoStructure{1, 2};
 
     sut_[0] = DemoStructure{1, 2};
     sut_[2] = DemoStructure{5, 6};
     sut_[1] = DemoStructure{3, 4};
 
-    ASSERT_EQ(sut_[0].i, 1);
-    ASSERT_EQ(sut_[0].j, 2);
-    ASSERT_EQ(sut_[1].i, 3);
-    ASSERT_EQ(sut_[1].j, 4);
-    ASSERT_EQ(sut_[2].i, 5);
-    ASSERT_EQ(sut_[2].j, 6);
+    ASSERT_EQ(sut_[0], expected);
+}
+
+TEST_F(Fixture, AddMultipleAssert1_WhenRandom)
+{
+    auto expected = DemoStructure{3, 4};
+
+    sut_[0] = DemoStructure{1, 2};
+    sut_[2] = DemoStructure{5, 6};
+    sut_[1] = DemoStructure{3, 4};
+
+    ASSERT_EQ(sut_[1], expected);
+}
+
+TEST_F(Fixture, AddMultipleAssert2_WhenRandom)
+{
+    auto expected = DemoStructure{5, 6};
+
+    sut_[0] = DemoStructure{1, 2};
+    sut_[2] = DemoStructure{5, 6};
+    sut_[1] = DemoStructure{3, 4};
+
+    ASSERT_EQ(sut_[2], expected);
 }
 
 TEST_F(Fixture, CapacityIncreasedTwice_WhenMoreAsInitial)
