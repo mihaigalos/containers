@@ -8,7 +8,7 @@
 namespace containers
 {
 
-template <typename TValue, typename TSize = uint8_t, TSize MaxSize = static_cast<TSize>(-1)>
+template <typename TValue, typename TSize = uint8_t, TSize MaxSize = 10>
 class static_vector : public static_map<TSize, TValue, MaxSize>
 {
 public:
@@ -23,8 +23,13 @@ public:
 
     TValue &pop_back()
     {
-        return (*this)[this->size_--];
+        return (*this)[--this->size_];
     }
-};
 
+    // TValue &pop_back() &&
+    // {
+    //     --this->size_;
+    //     return (*this)[--this->size_];
+    // }
+};
 } // namespace containers

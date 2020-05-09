@@ -70,3 +70,50 @@ TEST_F(Fixture, PushBack_WhenTypicalThreeElement)
     ASSERT_EQ(sut_[2].i, 3);
     ASSERT_EQ(sut_[2].j, 4);
 }
+
+TEST_F(Fixture, PopBack_WhenTypical)
+{
+    DemoStructure data{1, 2};
+    DemoStructure data1{3, 4};
+    DemoStructure data2{5, 6};
+
+    sut_.push_back(data);
+    sut_.push_back(data1);
+    sut_.push_back(data2);
+    auto actual = sut_.pop_back();
+
+    ASSERT_EQ(actual.i, 5);
+    ASSERT_EQ(actual.j, 6);
+}
+
+TEST_F(Fixture, PopPush_WhenTypical)
+{
+    DemoStructure data{1, 2};
+    DemoStructure data1{3, 4};
+    DemoStructure data2{5, 6};
+    DemoStructure data3{7, 8};
+
+    sut_.push_back(data);
+    sut_.push_back(data1);
+    sut_.push_back(data2);
+    auto actual = sut_.pop_back();
+
+    sut_.push_back(data3);
+
+    ASSERT_EQ(actual.i, 5);
+    ASSERT_EQ(actual.j, 6);
+}
+
+TEST_F(Fixture, PushPopPushPop_WhenTypical)
+{
+    DemoStructure data{1, 2};
+    DemoStructure data3{7, 8};
+
+    sut_.push_back(data);
+    sut_.pop_back();
+    sut_.push_back(data3);
+    auto actual = sut_.pop_back();
+
+    ASSERT_EQ(actual.i, 7);
+    ASSERT_EQ(actual.j, 8);
+}
