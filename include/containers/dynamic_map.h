@@ -23,8 +23,8 @@ public:
         free(values_);
     }
 
-    TKey size() const { return size_; }
-    TKey max_size() const { return max_size_; }
+    auto size() const { return size_; }
+    auto max_size() const { return max_size_; }
     void clear()
     {
         size_ = {};
@@ -58,8 +58,8 @@ private:
     {
         if (size_ == max_size_)
         {
-            decltype(auto) old_keys{keys_};
-            decltype(auto) old_values{values_};
+            auto old_keys{keys_};
+            auto old_values{values_};
             keys_ = static_cast<TKey *>(realloc(keys_, 2 * max_size_));
             values_ = static_cast<TValue *>(realloc(values_, 2 * max_size_));
 
