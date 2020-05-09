@@ -8,6 +8,10 @@ struct DemoStructure
 {
     uint16_t i{0xFFFF};
     uint16_t j{0xFFFF};
+    bool operator==(const DemoStructure &rhs) const
+    {
+        return i == rhs.i && j == rhs.j;
+    }
 };
 
 template <typename T>
@@ -42,38 +46,33 @@ TYPED_TEST(Fixture, ClearWorks_WhenTypical)
 
 TYPED_TEST(Fixture, AddWorks_WhenTypical)
 {
+    auto expected = DemoStructure{1, 2};
+
     this->sut_[0] = DemoStructure{1, 2};
     auto actual = this->sut_[0];
 
-    ASSERT_EQ(actual.i, 1);
-    ASSERT_EQ(actual.j, 2);
+    ASSERT_EQ(actual, expected);
 }
 
 TYPED_TEST(Fixture, AddMultiple_WhenInSequence)
 {
+    auto expected = DemoStructure{3, 4};
 
     this->sut_[0] = DemoStructure{1, 2};
     this->sut_[1] = DemoStructure{3, 4};
 
-    ASSERT_EQ(this->sut_[0].i, 1);
-    ASSERT_EQ(this->sut_[0].j, 2);
-    ASSERT_EQ(this->sut_[1].i, 3);
-    ASSERT_EQ(this->sut_[1].j, 4);
+    ASSERT_EQ(this->sut_[1], expected);
 }
 
 TYPED_TEST(Fixture, AddMultiple_WhenRandom)
 {
+    auto expected = DemoStructure{5, 6};
 
     this->sut_[0] = DemoStructure{1, 2};
     this->sut_[2] = DemoStructure{5, 6};
     this->sut_[1] = DemoStructure{3, 4};
 
-    ASSERT_EQ(this->sut_[0].i, 1);
-    ASSERT_EQ(this->sut_[0].j, 2);
-    ASSERT_EQ(this->sut_[1].i, 3);
-    ASSERT_EQ(this->sut_[1].j, 4);
-    ASSERT_EQ(this->sut_[2].i, 5);
-    ASSERT_EQ(this->sut_[2].j, 6);
+    ASSERT_EQ(this->sut_[2], expected);
 }
 
 TYPED_TEST(Fixture, AddMultiple_WhenRandom2)
