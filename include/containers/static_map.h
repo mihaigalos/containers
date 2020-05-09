@@ -22,7 +22,6 @@ public:
         bool found{false};
         for (; i < size_ && !found; ++i)
         {
-
             if (keys_[i] == index)
             {
                 found = true;
