@@ -3,15 +3,7 @@
 
 #include "containers/static_vector.h"
 
-struct DemoStructure
-{
-    uint16_t i{0xFFFF};
-    uint16_t j{0xFFFF};
-    bool operator==(const DemoStructure &rhs) const
-    {
-        return i == rhs.i && j == rhs.j;
-    }
-};
+#include "test_common.h"
 
 class Fixture : public ::testing::Test
 {

@@ -4,11 +4,7 @@
 #include "containers/dynamic_map.h"
 #include "containers/static_map.h"
 
-struct DemoStructure
-{
-    uint16_t i{0xFFFF};
-    uint16_t j{0xFFFF};
-};
+#include "test_common.h"
 
 class Fixture : public ::testing::Test
 {
