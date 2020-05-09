@@ -25,7 +25,7 @@ Since the example uses static data to circumvent not having extra *volatile*-qua
 
 ##### Dynamically allocated unordered map
 
-About 1kB of flash usage.
+About 2kB of flash usage.
 
 ```
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_dynamic.cpp -o avr_main_dynamic
