@@ -2,6 +2,8 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
+
 namespace containers
 {
 
@@ -56,8 +58,14 @@ private:
     {
         if (size_ == max_size_)
         {
+            decltype(auto) old_keys{keys_};
+            decltype(auto) old_values{values_};
             keys_ = static_cast<TKey *>(realloc(keys_, 2 * max_size_));
             values_ = static_cast<TValue *>(realloc(values_, 2 * max_size_));
+
+            memcpy(keys_, old_keys, max_size_);
+            memcpy(values_, old_values, max_size_);
+
             max_size_ = 2 * max_size_;
         }
     }
