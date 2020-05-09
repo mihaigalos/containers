@@ -7,6 +7,10 @@ struct DemoStructure
 {
     uint16_t i{0xFFFF};
     uint16_t j{0xFFFF};
+    bool operator==(const DemoStructure &rhs) const
+    {
+        return i == rhs.i && j == rhs.j;
+    }
 };
 
 class Fixture : public ::testing::Test
@@ -27,16 +31,16 @@ TEST_F(Fixture, PushBack_WhenTypicalOneElement)
 
     sut_.push_back(data);
 
-    ASSERT_EQ(sut_[0].i, 1);
-    ASSERT_EQ(sut_[0].j, 2);
+    ASSERT_EQ(sut_[0], data);
 }
 
 TEST_F(Fixture, PushBackRValue_WhenTypicalOneElement)
 {
+    DemoStructure expected{1, 2};
+
     sut_.push_back(DemoStructure{1, 2});
 
-    ASSERT_EQ(sut_[0].i, 1);
-    ASSERT_EQ(sut_[0].j, 2);
+    ASSERT_EQ(sut_[0], expected);
 }
 
 TEST_F(Fixture, PushBack_WhenTypicalTwoElement)
@@ -47,8 +51,7 @@ TEST_F(Fixture, PushBack_WhenTypicalTwoElement)
     sut_.push_back(data);
     sut_.push_back(data1);
 
-    ASSERT_EQ(sut_[1].i, 3);
-    ASSERT_EQ(sut_[1].j, 4);
+    ASSERT_EQ(sut_[1], data1);
 }
 
 TEST_F(Fixture, PushBack_WhenTypicalThreeElement)
@@ -61,8 +64,7 @@ TEST_F(Fixture, PushBack_WhenTypicalThreeElement)
     sut_.push_back(data2);
     sut_.push_back(data1);
 
-    ASSERT_EQ(sut_[2].i, 3);
-    ASSERT_EQ(sut_[2].j, 4);
+    ASSERT_EQ(sut_[2], data1);
 }
 
 TEST_F(Fixture, PopBack_WhenTypical)
@@ -76,8 +78,7 @@ TEST_F(Fixture, PopBack_WhenTypical)
     sut_.push_back(data2);
     auto actual = sut_.pop_back();
 
-    ASSERT_EQ(actual.i, 5);
-    ASSERT_EQ(actual.j, 6);
+    ASSERT_EQ(actual, data2);
 }
 
 TEST_F(Fixture, PopPush_WhenTypical)
@@ -94,8 +95,7 @@ TEST_F(Fixture, PopPush_WhenTypical)
 
     sut_.push_back(data3);
 
-    ASSERT_EQ(actual.i, 5);
-    ASSERT_EQ(actual.j, 6);
+    ASSERT_EQ(actual, data2);
 }
 
 TEST_F(Fixture, PushPopPushPop_WhenTypical)
@@ -108,6 +108,5 @@ TEST_F(Fixture, PushPopPushPop_WhenTypical)
     sut_.push_back(data3);
     auto actual = sut_.pop_back();
 
-    ASSERT_EQ(actual.i, 7);
-    ASSERT_EQ(actual.j, 8);
+    ASSERT_EQ(actual, data3);
 }
