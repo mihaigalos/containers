@@ -8,13 +8,13 @@ Since the example uses static data to circumvent not having extra *volatile*-qua
 ```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_vector.cpp -o avr_main_static_vector
 
-➜  demo git:(master) ✗ avr-size avr_main_static_vector                          
+➜  demo git:(master) ✗ avr-size avr_main_static_vector
    text    data     bss     dec     hex filename
-    292       0      31     323     143 avr_main_static_vector
+    318       0      31     349     15d avr_main_static_vector
 
-➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_static_vector                                     
+➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_static_vector
+00000074 T main
 00000054 W containers::static_map<unsigned char, DemoStructure, (unsigned char)10>::operator[](unsigned char)
-00000048 T main
 00000031 B sut_
 00000022 T __do_global_ctors
 00000016 T __do_clear_bss

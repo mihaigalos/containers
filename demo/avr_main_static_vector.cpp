@@ -17,6 +17,6 @@ int main()
 
     if (actual.i & 0x55)
     {
-        PORTB |= (1 << 5);
+        PORTB |= sut_.pop_back().i;
     }
 }
