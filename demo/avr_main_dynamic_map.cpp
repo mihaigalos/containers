@@ -4,12 +4,7 @@
 
 void operator delete(void *ptr, unsigned int foo)
 {
-    delete ptr;
-}
-
-void operator delete(void *ptr)
-{
-    delete ptr;
+    free(ptr);
 }
 
 struct DemoStructure
