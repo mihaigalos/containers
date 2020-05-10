@@ -7,15 +7,19 @@ matrix:
       apt:
         sources:
           - ubuntu-toolchain-r-test
-          - bazel
         packages:
+          - avr-libc
           - g++-7
           - gcc-avr
-          - avr-libc
+          - pkg-config
+          - wget
     env:
       - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 before_install:
   - eval "${MATRIX_EVAL}"
+  - wget https://github.com/bazelbuild/bazel/releases/download/2.1.1/bazel_2.1.1-linux-x86_64.deb
+  - sha256sum -c tools/bazel_2.1.1-linux-x86_64.deb.sha256
+  - sudo dpkg -i bazel_2.1.1-linux-x86_64.deb
 
 script:
   - bazel build //...
