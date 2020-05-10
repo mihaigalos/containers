@@ -1,4 +1,4 @@
-### Containers
+### Containers [![Build Status](https://travis-ci.org/mihaigalos/containers.svg?branch=master)](https://travis-ci.org/mihaigalos/containers.svg?branch=master)
 
 Simplified manual C++ implementation of STL containers for devices without one, like AVR / Arduino.
 
