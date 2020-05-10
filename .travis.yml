@@ -7,10 +7,8 @@ matrix:
       apt:
         sources:
           - ubuntu-toolchain-r-test
-          - llvm-toolchain-trusty-5.0
         packages:
           - avr-libc
-          - clang-5.0
           - g++-7
           - gcc-avr
           - pkg-config
