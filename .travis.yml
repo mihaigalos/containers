@@ -7,16 +7,18 @@ matrix:
       apt:
         sources:
           - ubuntu-toolchain-r-test
+          - llvm-toolchain-trusty-5.0
         packages:
           - avr-libc
+          - clang-5.0
           - g++-7
           - gcc-avr
           - pkg-config
           - wget
     env:
-      - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+      - MY_ENVIRONMENT="CC=clang CXX=clang++"
 before_install:
-  - eval "${MATRIX_EVAL}"
+  - eval "${MY_ENVIRONMENT}"
   - wget https://github.com/bazelbuild/bazel/releases/download/2.1.1/bazel_2.1.1-linux-x86_64.deb
   - sudo dpkg -i bazel_2.1.1-linux-x86_64.deb
 
