@@ -57,8 +57,8 @@ private:
     {
         if (size_ == max_size_)
         {
-            auto old_keys{keys_};
-            auto old_values{values_};
+            auto old_keys = keys_;
+            auto old_values = values_;
             keys_ = static_cast<TKey *>(realloc(keys_, 2 * max_size_));
             values_ = static_cast<TValue *>(realloc(values_, 2 * max_size_));
 
