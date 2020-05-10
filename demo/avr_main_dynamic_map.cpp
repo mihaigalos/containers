@@ -7,6 +7,11 @@ void operator delete(void *ptr, unsigned int foo)
     free(ptr);
 }
 
+void operator delete(void *ptr)
+{
+    free(ptr);
+}
+
 struct DemoStructure
 {
     uint8_t i;
