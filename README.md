@@ -1,4 +1,4 @@
-### Containers [![Build Status](https://travis-ci.org/mihaigalos/containers.svg?branch=master)](https://travis-ci.org/mihaigalos/containers)
+### Containers [![Build Status](https://travis-ci.org/mihaigalos/containers.svg?branch=master)](https://travis-ci.org/mihaigalos/containers) [![license](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)](LICENSE)
 
 Simplified manual C++ implementation of STL containers for devices without one, like AVR / Arduino.
 
