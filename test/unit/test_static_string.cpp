@@ -104,20 +104,20 @@ TEST_F(Fixture, MoveAssignmentActuallyMoves_WhenTypical)
     ASSERT_EQ(myString, containers::static_string<>{"FooBar"});
 }
 
-// TEST_F(Fixture, OperatorEqualsWorks_WhenTypical)
-// {
-//     std::string expected{"FooBar"};
+TEST_F(Fixture, OperatorEqualsWorks_WhenTypical)
+{
+    containers::static_string<> expected{"FooBar"};
 
-//     containers::static_string<> other{"FooBar"};
+    containers::static_string<> other{"FooBar"};
 
-//     ASSERT_EQ(sut_, other);
-// }
+    ASSERT_EQ(expected, other);
+}
 
-// TEST_F(Fixture, OperatorNotEqualsWorks_WhenTypical)
-// {
-//     std::string expected{"FooBla"};
+TEST_F(Fixture, OperatorNotEqualsWorks_WhenTypical)
+{
+    containers::static_string<> expected{"FooBla"};
 
-//     containers::static_string<> other{"FooBar"};
+    containers::static_string<> other{"FooBar"};
 
-//     ASSERT_NE(sut_, other);
-// }
+    ASSERT_NE(expected, other);
+}
