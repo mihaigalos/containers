@@ -37,18 +37,26 @@ TEST_F(Fixture, CStrWorks_WhenTypical)
 
     const char *character = myString.c_str();
 
-    // std::cout << "character: " << character << std::endl;
     ASSERT_EQ(*character, 'F');
 }
 
-// TEST_F(Fixture, CopyConstructorWorks_WhenTypical)
-// {
-//     containers::static_string<> myString{"FooBar"};
+TEST_F(Fixture, CopyConstructorWorks_WhenTypical)
+{
+    containers::static_string<> myString{"FooBar"};
 
-//     containers::static_string<> myString2{myString};
+    containers::static_string<> myString2{myString};
 
-//     ASSERT_GT(myString2.size(), 0);
-// }
+    ASSERT_GT(myString2.size(), 0);
+}
+
+TEST_F(Fixture, CopyConstructorActuallyCopies_WhenTypical)
+{
+    containers::static_string<> myString{"FooBar"};
+
+    containers::static_string<> myString2{myString};
+
+    ASSERT_EQ(myString2, myString);
+}
 
 // TEST_F(Fixture, MoveConstructorWorks_WhenTypical)
 // {

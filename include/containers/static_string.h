@@ -19,7 +19,7 @@ public:
         copyData(in);
     }
 
-    static_string(const static_string &other)
+    static_string(static_string &other)
     {
         copyData(other.c_str());
     }
@@ -54,7 +54,8 @@ public:
         {
             for (TSize i = 0; i < rhs.size_; ++i)
             {
-                if ((*this)[i] != rhs[i])
+                // TODO: implement static_map::const operator[](const) const
+                if ((*const_cast<static_string *>(this))[i] != (*const_cast<static_string *>(&rhs))[i])
                 {
                     result = false;
                     break;
