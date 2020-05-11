@@ -37,11 +37,6 @@ public:
         return values_[index_in_keys];
     }
 
-    const TValue &operator[](const TKey index) const
-    {
-        return operator[](reinterpret_cast<TKey>(index));
-    }
-
 protected:
     TKey keys_[MaxSize];
     TValue values_[MaxSize];

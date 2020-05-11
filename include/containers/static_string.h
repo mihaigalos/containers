@@ -41,9 +41,9 @@ public:
         return *this;
     }
 
-    const char *c_str() const
+    const char *c_str()
     {
-        return reinterpret_cast<const char *>((*this)[0]);
+        return reinterpret_cast<char *>((*this)[0]);
     }
 
     bool operator==(const static_string &rhs) const
