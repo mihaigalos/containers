@@ -2,7 +2,7 @@
 
 ##### Statically allocated string
 
-Usage of avout 300 bytes of flash.
+Usage of avout 400 bytes of flash.
 
 ```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_string.cpp -o avr_main_static_string
@@ -24,7 +24,7 @@ Usage of avout 300 bytes of flash.
 
 ##### Statically allocated vector
 
-Usage of  about 400 bytes of flash.
+Usage of  about 300 bytes of flash.
 
 ```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_vector.cpp -o avr_main_static_vector
