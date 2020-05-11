@@ -29,12 +29,17 @@ public:
             }
         }
 
-        if (!found)
+        if (!found && size_ < MaxSize)
         {
             keys_[size_++] = index;
         }
         TKey index_in_keys = keys_[i];
         return values_[index_in_keys];
+    }
+
+    const TValue &operator[](const TKey index) const
+    {
+        return operator[](reinterpret_cast<TKey>(index));
     }
 
 protected:

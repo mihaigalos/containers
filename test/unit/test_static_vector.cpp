@@ -118,3 +118,13 @@ TEST_F(Fixture, PushPopPushPop_WhenTypical)
 
     ASSERT_EQ(actual, data3);
 }
+
+TEST_F(Fixture, PushBeyondCapacityNoSegFault_WhenTypical)
+{
+    for (uint16_t i = 0; i < 15; ++i)
+    {
+        sut_.push_back(DemoStructure{i, i});
+    }
+
+    ASSERT_EQ(0, 0);
+}
