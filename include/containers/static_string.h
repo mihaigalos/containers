@@ -8,7 +8,7 @@
 namespace containers
 {
 
-template <typename TSize = uint8_t, TSize MaxSize = 10>
+template <typename TSize = uint8_t, TSize MaxSize = 15>
 class static_string : public static_vector<TSize, unsigned char, MaxSize>
 {
 public:
