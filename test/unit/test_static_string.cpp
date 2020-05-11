@@ -72,14 +72,23 @@ TEST_F(Fixture, MoveConstructorActuallyMoves_WhenTypical)
     ASSERT_EQ(myString, containers::static_string<>{"FooBar"});
 }
 
-// TEST_F(Fixture, CopyAssignmentWorks_WhenTypical)
-// {
-//     containers::static_string<> s{"FooBar"};
+TEST_F(Fixture, CopyAssignmentWorks_WhenTypical)
+{
+    containers::static_string<> s{"FooBar"};
 
-//     containers::static_string<> myString = s;
+    containers::static_string<> myString = s;
 
-//     ASSERT_GT(myString.size(), 0);
-// }
+    ASSERT_GT(myString.size(), 0);
+}
+
+TEST_F(Fixture, CopyAssignmentActuallyCopies_WhenTypical)
+{
+    containers::static_string<> s{"FooBar"};
+
+    containers::static_string<> myString = s;
+
+    ASSERT_EQ(myString, s);
+}
 
 // TEST_F(Fixture, MoveAssignmentWorks_WhenTypical)
 // {
