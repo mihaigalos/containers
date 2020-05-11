@@ -8,7 +8,7 @@
 namespace containers
 {
 
-template <typename TValue, typename TSize = uint8_t, TSize MaxSize = 10>
+template <typename TValue, typename TSize = uint8_t, TSize MaxSize = 15>
 class static_vector : public static_map<TSize, TValue, MaxSize>
 {
 public:
