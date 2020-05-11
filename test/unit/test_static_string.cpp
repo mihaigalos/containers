@@ -24,6 +24,13 @@ TEST_F(Fixture, ConstructorWorks_WhenTypical)
     ASSERT_GT(myString.size(), 0);
 }
 
+TEST_F(Fixture, CStrWorks_WhenTypical)
+{
+    containers::static_string<> myString{"FooBar"};
+
+    ASSERT_GT(myString.c_str(), reinterpret_cast<const char *>(0));
+}
+
 // TEST_F(Fixture, CopyConstructorWorks_WhenTypical)
 // {
 //     containers::static_string<> myString{"FooBar"};
