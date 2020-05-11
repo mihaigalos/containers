@@ -43,7 +43,7 @@ public:
 
     const char *c_str()
     {
-        return reinterpret_cast<char *>((*this)[0]);
+        return reinterpret_cast<const char *>(&(*this)[0]);
     }
 
     bool operator==(const static_string &rhs) const
@@ -77,9 +77,16 @@ public:
 private:
     void copyData(const char *in)
     {
-        for (TSize i = 0; i < MaxSize && in[i] != 0; ++i)
+        TSize i{};
+        for (; i < MaxSize && in[i] != 0; ++i)
         {
-            this->push_back(*in);
+            std::cout << static_cast<int>(in[i]) << std::endl;
+            this->push_back(in[i]);
+        }
+
+        if (i < MaxSize && in[i] == '\0')
+        {
+            this->push_back('\0');
         }
     }
 };

@@ -21,14 +21,24 @@ TEST_F(Fixture, ConstructorWorks_WhenTypical)
 {
     containers::static_string<> myString{"FooBar"};
 
-    ASSERT_GT(myString.size(), 0);
+    ASSERT_EQ(myString.size(), 7);
+}
+
+TEST_F(Fixture, ConstructorFirstLetterCoincidesWorks_WhenTypical)
+{
+    containers::static_string<> myString{"FooBar"};
+
+    ASSERT_EQ(myString[0], 'F');
 }
 
 TEST_F(Fixture, CStrWorks_WhenTypical)
 {
     containers::static_string<> myString{"FooBar"};
 
-    ASSERT_GT(myString.c_str(), reinterpret_cast<const char *>(0));
+    const char *character = myString.c_str();
+
+    // std::cout << "character: " << character << std::endl;
+    ASSERT_EQ(*character, 'F');
 }
 
 // TEST_F(Fixture, CopyConstructorWorks_WhenTypical)
@@ -40,12 +50,12 @@ TEST_F(Fixture, CStrWorks_WhenTypical)
 //     ASSERT_GT(myString2.size(), 0);
 // }
 
-TEST_F(Fixture, MoveConstructorWorks_WhenTypical)
-{
-    containers::static_string<> myString{containers::static_string<>{"FooBar"}};
+// TEST_F(Fixture, MoveConstructorWorks_WhenTypical)
+// {
+//     containers::static_string<> myString{containers::static_string<>{"FooBar"}};
 
-    ASSERT_GT(myString.size(), 0);
-}
+//     ASSERT_GT(myString.size(), 0);
+// }
 
 // TEST_F(Fixture, CopyAssignmentWorks_WhenTypical)
 // {
@@ -56,13 +66,13 @@ TEST_F(Fixture, MoveConstructorWorks_WhenTypical)
 //     ASSERT_GT(myString.size(), 0);
 // }
 
-TEST_F(Fixture, MoveAssignmentWorks_WhenTypical)
-{
+// TEST_F(Fixture, MoveAssignmentWorks_WhenTypical)
+// {
 
-    containers::static_string<> myString = {"FooBar"};
+//     containers::static_string<> myString = {"FooBar"};
 
-    ASSERT_GT(myString.size(), 0);
-}
+//     ASSERT_GT(myString.size(), 0);
+// }
 
 // TEST_F(Fixture, OperatorEqualsWorks_WhenTypical)
 // {
