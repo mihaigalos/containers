@@ -2,7 +2,6 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-#include <iostream>
 
 #include "static_vector.h"
 
@@ -81,7 +80,6 @@ private:
         TSize i{};
         for (; i < MaxSize && in[i] != 0; ++i)
         {
-            std::cout << static_cast<int>(in[i]) << std::endl;
             this->push_back(in[i]);
         }
 

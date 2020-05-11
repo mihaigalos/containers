@@ -40,6 +40,24 @@ TEST_F(Fixture, CStrWorks_WhenTypical)
     ASSERT_EQ(*character, 'F');
 }
 
+TEST_F(Fixture, OperatorEqualsWorks_WhenTypical)
+{
+    containers::static_string<> expected{"FooBar"};
+
+    containers::static_string<> other{"FooBar"};
+
+    ASSERT_EQ(expected, other);
+}
+
+TEST_F(Fixture, OperatorNotEqualsWorks_WhenTypical)
+{
+    containers::static_string<> expected{"FooBla"};
+
+    containers::static_string<> other{"FooBar"};
+
+    ASSERT_NE(expected, other);
+}
+
 TEST_F(Fixture, CopyConstructorWorks_WhenTypical)
 {
     containers::static_string<> myString{"FooBar"};
@@ -102,22 +120,4 @@ TEST_F(Fixture, MoveAssignmentActuallyMoves_WhenTypical)
     containers::static_string<> myString = {"FooBar"};
 
     ASSERT_EQ(myString, containers::static_string<>{"FooBar"});
-}
-
-TEST_F(Fixture, OperatorEqualsWorks_WhenTypical)
-{
-    containers::static_string<> expected{"FooBar"};
-
-    containers::static_string<> other{"FooBar"};
-
-    ASSERT_EQ(expected, other);
-}
-
-TEST_F(Fixture, OperatorNotEqualsWorks_WhenTypical)
-{
-    containers::static_string<> expected{"FooBla"};
-
-    containers::static_string<> other{"FooBar"};
-
-    ASSERT_NE(expected, other);
 }
