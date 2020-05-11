@@ -1,9 +1,30 @@
 ### Simplified container implementations for AVR
 
+##### Statically allocated string
+
+Usage of avout 300 bytes of flash.
+
+```c++
+➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_string.cpp -o avr_main_static_string
+
+➜  demo git:(master) ✗ avr-size avr_main_static_string
+   text    data     bss     dec     hex filename
+    374       8      21     403     193 avr_main_static_string
+
+➜  demo git:(master) ✗ avr-nm --size-sort -C -r --radix=d avr_main_static_string
+00000062 W containers::static_map<unsigned char, unsigned char, (unsigned char)10>::operator[](unsigned char)
+00000062 t _GLOBAL__sub_I_sut_
+00000044 T main
+00000022 T __do_global_ctors
+00000022 T __do_copy_data
+00000021 B sut_
+00000016 T __do_clear_bss
+00000012 T __tablejump2
+```
+
 ##### Statically allocated vector
 
-Usage of <300 bytes of flash (318-31 static data).
-Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
+Usage of  about 400 bytes of flash.
 
 ```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_vector.cpp -o avr_main_static_vector
@@ -24,8 +45,7 @@ Since the example uses static data to circumvent not having extra *volatile*-qua
 
 ##### Statically allocated unordered map
 
-Usage of <300 bytes of flash (330-42 static data).
-Since the example uses static data to circumvent not having extra *volatile*-qualified members, displayed size also contains opcode to zero-initialize the .bss section.
+Usage of about 300 bytes of flash.
 
 ```c++
 ➜  demo git:(master) ✗ avr-gcc -std=c++17  -Os -mmcu=atmega328p  avr_main_static_map.cpp -o avr_main_static_map
