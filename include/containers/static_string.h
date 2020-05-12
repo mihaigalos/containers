@@ -78,15 +78,12 @@ private:
 
     TSize i{};
     for (; i < MaxSize && in[i] != 0; ++i) {
-      std::cout << "[" << static_cast<int>(i) << "] " << in[i] << " ";
       this->push_back(in[i]);
     }
 
     if (i < MaxSize && in[i] == '\0') {
       this->push_back('\0');
     }
-
-    std::cout << std::endl;
   }
 };
 
