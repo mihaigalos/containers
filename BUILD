@@ -27,6 +27,9 @@ cc_library(
     ),
     hdrs = glob(["include/**/*.h"]),
     copts = DEFAULT_COMPILER_OPTIONS,
+    includes = [
+        "include",
+    ],
     strip_include_prefix = "include",
 )
 
