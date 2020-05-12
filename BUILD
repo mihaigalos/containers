@@ -14,13 +14,13 @@ DEFAULT_COMPILER_OPTIONS = [
 ]
 
 DEFAULT_TEST_DEPS = [
-    ":sources",
+    ":containers",
     "@gtest",
     "@gtest//:gtest_main",
 ]
 
 cc_library(
-    name = "sources",
+    name = "containers",
     srcs = glob(
         ["src/**/*.cpp"],
         exclude = ["src/avr_main.cpp"],
