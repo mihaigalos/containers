@@ -7,14 +7,6 @@
 
 class Fixture : public ::testing::Test
 {
-public:
-protected:
-    virtual void SetUp() override
-    {
-        sut_.clear();
-    }
-
-    containers::static_string<> sut_;
 };
 
 TEST_F(Fixture, ConstructorWorks_WhenTypical)
