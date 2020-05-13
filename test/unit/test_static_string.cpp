@@ -123,6 +123,15 @@ TEST_F(Fixture, MoveAssignmentActuallyMoves_WhenTypical)
     ASSERT_EQ(myString, containers::static_string<>{"FooBar"});
 }
 
+TEST_F(Fixture, MoveAssignmentWorks_WhenMovedAfterCreation)
+{
+    containers::static_string<> myString{};
+
+    myString = {"FooBar"};
+
+    ASSERT_EQ(myString, containers::static_string<>{"FooBar"});
+}
+
 TEST_F(Fixture, OperatorPlusWorks_WhenTypical)
 {
     containers::static_string<> myString = {"FooBar"};
