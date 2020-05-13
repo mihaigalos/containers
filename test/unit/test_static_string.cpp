@@ -100,6 +100,15 @@ TEST_F(Fixture, CopyAssignmentActuallyCopies_WhenTypical)
     ASSERT_EQ(myString, s);
 }
 
+TEST_F(Fixture, CopyAssignmentWorks_WhenReasignment)
+{
+    containers::static_string<> myString = {"FooBar"};
+
+    myString = "Baz";
+
+    ASSERT_EQ(myString, containers::static_string<>{"Baz"});
+}
+
 TEST_F(Fixture, MoveAssignmentWorks_WhenTypical)
 {
     containers::static_string<> myString = {"FooBar"};
