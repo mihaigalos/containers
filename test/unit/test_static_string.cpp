@@ -150,6 +150,24 @@ TEST_F(Fixture, OperatorPlusRValueWorks_WhenTypical)
     ASSERT_EQ(myString, containers::static_string<>{"FooBarBaz"});
 }
 
+TEST_F(Fixture, OperatorPlusEqualsRValueStringWorks_WhenTypical)
+{
+    containers::static_string<> myString = {"FooBar"};
+
+    myString += "Baz";
+
+    ASSERT_EQ(myString, containers::static_string<>{"FooBarBaz"});
+}
+
+TEST_F(Fixture, OperatorPlusEqualsRValueCharWorks_WhenTypical)
+{
+    containers::static_string<> myString = {"FooBar"};
+
+    myString += 'B';
+
+    ASSERT_EQ(myString, containers::static_string<>{"FooBarB"});
+}
+
 TEST_F(Fixture, OperatorPlusCharWorks_WhenTypical)
 {
     containers::static_string<> myString = {"FooBar"};

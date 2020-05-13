@@ -85,12 +85,22 @@ public:
     return *this;
   }
 
+  static_string &operator+=(const char *in)
+  {
+    return operator+(in);
+  }
+
   static_string &operator+(const char in)
   {
     remove_end();
     this->push_back(in);
     add_end(this->size_);
     return *this;
+  }
+
+  static_string &operator+=(const char in)
+  {
+    return operator+(in);
   }
 
 private:
