@@ -10,10 +10,7 @@ class static_map
 {
 public:
     auto size() const { return size_; }
-    void clear()
-    {
-        size_ = {};
-    }
+    void clear() { size_ = {}; }
 
     TValue &operator[](TKey index)
     {

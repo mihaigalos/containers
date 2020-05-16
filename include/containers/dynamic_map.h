@@ -25,10 +25,7 @@ public:
 
     auto size() const { return size_; }
     auto max_size() const { return max_size_; }
-    void clear()
-    {
-        size_ = {};
-    }
+    void clear() { size_ = {}; }
 
     TValue &operator[](TKey index)
     {
