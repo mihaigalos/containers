@@ -1,35 +1,37 @@
 #pragma once
 
-#include "static_vector.h"
 #include <stdint.h>
+
+#include "static_vector.h"
+#include "size_wrapper.h"
 
 namespace containers
 {
 
 template <typename TSize = uint8_t, TSize MaxSize = 15>
-class static_string : public static_vector<TSize, unsigned char, MaxSize>
+class __static_string : public static_vector<TSize, unsigned char, MaxSize>
 {
 public:
-  static_string() = default;
-  static_string(const char *in)
+  __static_string() = default;
+  __static_string(const char *in)
   {
     this->size_ = 0;
     append(in);
   }
 
-  static_string(static_string &other)
+  __static_string(__static_string &other)
   {
     this->size_ = 0;
     append(other.c_str());
   }
 
-  static_string(static_string &&other)
+  __static_string(__static_string &&other)
   {
     this->size_ = 0;
     append(other.c_str());
   }
 
-  static_string &operator=(static_string &other)
+  __static_string &operator=(__static_string &other)
   {
 
     if (*this == other)
@@ -42,7 +44,7 @@ public:
     return *this;
   }
 
-  static_string &operator=(static_string &&other)
+  __static_string &operator=(__static_string &&other)
   {
     this->size_ = 0;
     append(other.c_str());
@@ -51,7 +53,7 @@ public:
 
   const char *c_str() { return reinterpret_cast<const char *>(&(*this)[0]); }
 
-  bool operator==(const static_string &rhs) const
+  bool operator==(const __static_string &rhs) const
   {
     bool result{true};
 
@@ -60,8 +62,8 @@ public:
       for (TSize i = 0; i < rhs.size_; ++i)
       {
         // TODO: implement static_map::const operator[](const) const
-        if ((*const_cast<static_string *>(this))[i] !=
-            (*const_cast<static_string *>(&rhs))[i])
+        if ((*const_cast<__static_string *>(this))[i] !=
+            (*const_cast<__static_string *>(&rhs))[i])
         {
           result = false;
           break;
@@ -76,21 +78,21 @@ public:
     return result;
   }
 
-  bool operator!=(const static_string &rhs) const { return !operator==(rhs); }
+  bool operator!=(const __static_string &rhs) const { return !operator==(rhs); }
 
-  static_string &operator+(const char *in)
+  __static_string &operator+(const char *in)
   {
     remove_end();
     append(in);
     return *this;
   }
 
-  static_string &operator+=(const char *in)
+  __static_string &operator+=(const char *in)
   {
     return operator+(in);
   }
 
-  static_string &operator+(const char in)
+  __static_string &operator+(const char in)
   {
     remove_end();
     this->push_back(in);
@@ -98,7 +100,7 @@ public:
     return *this;
   }
 
-  static_string &operator+=(const char in)
+  __static_string &operator+=(const char in)
   {
     return operator+(in);
   }
@@ -130,5 +132,8 @@ private:
     add_end(i);
   }
 };
+
+template <unsigned MaxSize = 15>
+using static_string = __static_string<Size_t_impl<MaxSize>, MaxSize>;
 
 } // namespace containers
