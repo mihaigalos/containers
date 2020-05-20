@@ -37,10 +37,10 @@ script:
   - bazel test //...
   - bazel coverage --combined_report=lcov //...
   - genhtml bazel-out/_coverage/_coverage_report.dat --output-directory coverage
-  - cd scripts && ./build_for_avr.sh
+  - pushd scripts && ./build_for_avr.sh && popd
 
 after_script:
-  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then bash <(curl -s https://codecov.io/bash); fi
+  - pushd scripts && ./push_test_coverage.sh && popd
 
 env:
   global:
