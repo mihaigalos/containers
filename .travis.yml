@@ -1,7 +1,8 @@
 # yamllint disable-line rule:line-length
 
+dist: bionic
+
 matrix:
-  include:
   - os: linux
     addons:
       apt:
@@ -11,19 +12,35 @@ matrix:
           - avr-libc
           - g++-7
           - gcc-avr
+          - lcov
           - pkg-config
           - wget
     env:
-      - MY_ENVIRONMENT="CC=clang CXX=clang++"
+      - MY_ENVIRONMENT="CC=gcc CXX=g++-7"
+      - CODECOV_TOKEN="83bcf4c4-761f-4235-9b11-023a8be02d42"
+
 before_install:
-  - eval "${MY_ENVIRONMENT}"
   - wget https://github.com/bazelbuild/bazel/releases/download/2.1.1/bazel_2.1.1-linux-x86_64.deb
   - sudo dpkg -i bazel_2.1.1-linux-x86_64.deb
 
+install:
+  - sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
+
 script:
+  - eval "${MY_ENVIRONMENT}"
+  - g++ --version
+  - gcov --version
+  - lcov --version
+  - bazel --version
   - bazel build //...
   - bazel test //...
-  - cd scripts && ./build_for_avr.sh
+  - bazel coverage --combined_report=lcov //...
+  - genhtml bazel-out/_coverage/_coverage_report.dat --output-directory coverage
+  - pushd scripts && ./build_for_avr.sh && popd
+
+after_script:
+  - pushd scripts && ./push_test_coverage.sh && popd
 
 env:
   global:
