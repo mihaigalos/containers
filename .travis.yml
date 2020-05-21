@@ -29,7 +29,7 @@ script:
   - bazel test //...
   - bazel coverage --combined_report=lcov //...
   - genhtml bazel-out/_coverage/_coverage_report.dat --output-directory coverage
-  - ./build_for_avr.sh
+  - ./scripts/build_for_avr.sh
 
 after_script:
   - ./scripts/push_test_coverage.sh
