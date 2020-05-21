@@ -5,7 +5,7 @@ function err() {
     exit 1
 }
 
-pushd ../demo
+pushd demo
 echo ""
 
 for file in *.cpp; do
