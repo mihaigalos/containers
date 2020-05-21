@@ -13,8 +13,8 @@ class dynamic_map
 public:
     dynamic_map() : max_size_{InitialMaxSize}
     {
-        keys_ = static_cast<TKey *>(malloc(InitialMaxSize));
-        values_ = static_cast<TValue *>(malloc(InitialMaxSize));
+        keys_ = static_cast<TKey *>(malloc(InitialMaxSize * sizeof(TKey)));
+        values_ = static_cast<TValue *>(malloc(InitialMaxSize * sizeof(TValue)));
     }
     virtual ~dynamic_map()
     {
@@ -42,7 +42,10 @@ public:
 
         if (!found)
         {
-            increase_capacity();
+            if (size_ == max_size_ || index == max_size_)
+            {
+                increase_capacity();
+            }
             keys_[size_++] = index;
         }
         TKey index_in_keys = keys_[i];
@@ -52,18 +55,10 @@ public:
 private:
     void increase_capacity()
     {
-        if (size_ == max_size_)
-        {
-            auto old_keys = keys_;
-            auto old_values = values_;
-            keys_ = static_cast<TKey *>(realloc(keys_, 2 * max_size_));
-            values_ = static_cast<TValue *>(realloc(values_, 2 * max_size_));
+        max_size_ = 2 * max_size_;
 
-            memcpy(keys_, old_keys, max_size_);
-            memcpy(values_, old_values, max_size_);
-
-            max_size_ = 2 * max_size_;
-        }
+        keys_ = static_cast<TKey *>(realloc(keys_, max_size_ * sizeof(TKey)));
+        values_ = static_cast<TValue *>(realloc(values_, max_size_ * sizeof(TValue)));
     }
 
     TKey *keys_; // these members are intentionally raw pointers instead of smart ones, for embedded architectures with no STL.
