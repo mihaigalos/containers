@@ -4,10 +4,27 @@ Simplified manual C++ implementation of STL containers for devices without one, 
 
 This functionality cannot replace the STL. Its purpose is reduced size while still allowing some functionality.
 
-### Building and testing
+### Build and Test
 
-* `bazel build //...`
-* `bazel test //...`
+First, get the sources:
+```
+git clone https://github.com/mihaigalos/containers.git && cd containers
+```
+
+#### Baremetal
+
+Building and testing is managed by `bazel` (transparent to the end-user).
+
+```bash
+bazel build //...
+bazel test //...
+```
+
+#### Using Docker
+
+```bash
+docker run -it --rm -v $(pwd):/src -v /tmp:/tmp/bazel remoteapistesting/bazel-build /bin/bash -c "bazel --output_base=/tmp/bazel test //..."
+```
 
 Invoking bazel produces a shared object library which the tests use.
 To cross compile for i.e. AVR, see `demo/`.
