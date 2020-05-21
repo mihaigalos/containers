@@ -26,5 +26,5 @@ bazel test //...
 docker run -it --rm -v $(pwd):/src -v /tmp:/tmp/bazel remoteapistesting/bazel-build /bin/bash -c "bazel --output_base=/tmp/bazel test //..."
 ```
 
-Invoking bazel produces a shared object library which the tests use.
+Invoking bazel produces a shared object library which the tests can use.
 To cross compile for i.e. AVR, see `demo/`.
