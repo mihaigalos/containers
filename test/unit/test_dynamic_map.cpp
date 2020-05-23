@@ -20,9 +20,8 @@ protected:
 
 TEST(DynamicMapDestructor, Works_WhenDynamicallyCreated)
 {
-    std::unique_ptr<MockDynamicMap> my_dynamic_map = std::make_unique<MockDynamicMap>();
-
-    EXPECT_CALL(*my_dynamic_map, Die());
+    auto my_dynamic_map = new containers::dynamic_map<uint16_t, DemoStructure, 2>;
+    delete my_dynamic_map;
 }
 
 TEST(DynamicMapDestructor, Works_WhenStaticallyCreated)
