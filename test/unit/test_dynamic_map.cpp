@@ -16,8 +16,18 @@ public:
 protected:
 };
 
-TEST(Fixture, CapacityIncreased_WhenMoreAsInitial)
+// see https://stackoverflow.com/a/7199706/2394327
+
+TEST(DynamicMapDestructor, Works_WhenDynamicallyCreated)
 {
     std::unique_ptr<MockDynamicMap> my_dynamic_map = std::make_unique<MockDynamicMap>();
+
     EXPECT_CALL(*my_dynamic_map, Die());
+}
+
+TEST(DynamicMapDestructor, Works_WhenStaticallyCreated)
+{
+    MockDynamicMap my_dynamic_map;
+
+    EXPECT_CALL(my_dynamic_map, Die());
 }
