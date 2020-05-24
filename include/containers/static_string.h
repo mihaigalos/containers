@@ -9,7 +9,7 @@ namespace containers
 {
 
 template <typename TSize = uint8_t, TSize MaxSize = 15>
-class __static_string : public static_vector<TSize, unsigned char, MaxSize>
+class __static_string : public static_vector<TSize, MaxSize>
 {
 public:
   __static_string() = default;
