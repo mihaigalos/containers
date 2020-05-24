@@ -1,4 +1,6 @@
-### Containers [![Build Status](https://travis-ci.org/mihaigalos/containers.svg?branch=master)](https://travis-ci.org/mihaigalos/containers) [![codecov](https://codecov.io/gh/mihaigalos/containers/branch/master/graph/badge.svg)](https://codecov.io/gh/mihaigalos/containers) [![license](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)](LICENSE) [![HitCount](http://hits.dwyl.com/mihaigalos/containers.svg)](http://hits.dwyl.com/mihaigalos/containers)
+# Containers
+
+[![Build Status](https://travis-ci.org/mihaigalos/containers.svg?branch=master)](https://travis-ci.org/mihaigalos/containers) [![codecov](https://codecov.io/gh/mihaigalos/containers/branch/master/graph/badge.svg)](https://codecov.io/gh/mihaigalos/containers) [![license](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)](LICENSE) [![HitCount](http://hits.dwyl.com/mihaigalos/containers.svg)](http://hits.dwyl.com/mihaigalos/containers) [![LoC](https://tokei.rs/b1/github/mihaigalos/containers)](https://github.com/Aaronepower/tokei)
 
 Simplified manual C++ implementation of STL containers for devices without one, like AVR / Arduino.
 
