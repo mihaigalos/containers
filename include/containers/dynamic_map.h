@@ -29,16 +29,8 @@ public:
 
     TValue &operator[](TKey index)
     {
-        TKey i{};
         bool found{false};
-        for (; i < size_ && !found; ++i)
-        {
-            if (keys_[i] == index)
-            {
-                found = true;
-                break;
-            }
-        }
+        TKey i = get_key_reference(index, found);
 
         if (!found)
         {
@@ -52,6 +44,13 @@ public:
         return values_[index_in_keys];
     }
 
+    bool ContainsKey(TKey index)
+    {
+        bool found{false};
+        get_key_reference(index, found);
+        return found;
+    }
+
 private:
     void increase_capacity()
     {
@@ -59,6 +58,20 @@ private:
 
         keys_ = static_cast<TKey *>(realloc(keys_, max_size_ * sizeof(TKey)));
         values_ = static_cast<TValue *>(realloc(values_, max_size_ * sizeof(TValue)));
+    }
+
+    TKey get_key_reference(TKey index, bool &found)
+    {
+        TKey i{};
+        for (; i < size_ && !found; ++i)
+        {
+            if (keys_[i] == index)
+            {
+                found = true;
+                break;
+            }
+        }
+        return i;
     }
 
     TKey *keys_; // these members are intentionally raw pointers instead of smart ones, for embedded architectures with no STL.

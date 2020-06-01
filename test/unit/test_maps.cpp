@@ -109,3 +109,39 @@ TYPED_TEST(Fixture, AddMultipleDeleteOne_WhenRandom)
     ASSERT_EQ(this->sut_[4].i, 9);
     ASSERT_EQ(this->sut_[4].j, 10);
 }
+
+TYPED_TEST(Fixture, ContainsKeyTrue_WhenTypical)
+{
+    auto expected = true;
+
+    this->sut_[0] = DemoStructure{1, 2};
+    this->sut_[2] = DemoStructure{5, 6};
+    this->sut_[1] = DemoStructure{3, 4};
+    auto actual = this->sut_.ContainsKey(1);
+
+    ASSERT_EQ(actual, expected);
+}
+
+TYPED_TEST(Fixture, ContainsKeyTrue2_WhenTypical)
+{
+    auto expected = true;
+
+    this->sut_[0] = DemoStructure{1, 2};
+    this->sut_[2] = DemoStructure{5, 6};
+    this->sut_[1] = DemoStructure{3, 4};
+    auto actual = this->sut_.ContainsKey(2);
+
+    ASSERT_EQ(actual, expected);
+}
+
+TYPED_TEST(Fixture, ContainsKeyFalse_WhenTypical)
+{
+    auto expected = false;
+
+    this->sut_[0] = DemoStructure{1, 2};
+    this->sut_[2] = DemoStructure{5, 6};
+    this->sut_[1] = DemoStructure{3, 4};
+    auto actual = this->sut_.ContainsKey(3);
+
+    ASSERT_EQ(actual, expected);
+}

@@ -92,3 +92,27 @@ TEST_F(Fixture, AddMultipleDeleteOne_WhenRandom)
     ASSERT_EQ(sut_[4].i, 9);
     ASSERT_EQ(sut_[4].j, 10);
 }
+
+TEST_F(Fixture, ContainsKeyNoCapacityIncrease_WhenDoesContainKey)
+{
+    auto expected = 2;
+
+    this->sut_[0] = DemoStructure{1, 2};
+    this->sut_[1] = DemoStructure{3, 4};
+    sut_.ContainsKey(0);
+    auto actual = sut_.max_size();
+
+    ASSERT_EQ(actual, expected);
+}
+
+TEST_F(Fixture, ContainsKeyNoCapacityIncrease_WhenDoesNotContainKey)
+{
+    auto expected = 2;
+
+    this->sut_[0] = DemoStructure{1, 2};
+    this->sut_[1] = DemoStructure{3, 4};
+    sut_.ContainsKey(3);
+    auto actual = sut_.max_size();
+
+    ASSERT_EQ(actual, expected);
+}
