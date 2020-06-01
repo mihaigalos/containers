@@ -29,8 +29,8 @@ public:
 
     TValue &operator[](TKey index)
     {
-        bool found{false};
-        TKey i = get_key_reference(index, found);
+        TKey i = get_key_reference(index);
+        bool found{i != size_};
 
         if (!found)
         {
@@ -46,8 +46,8 @@ public:
 
     bool ContainsKey(TKey index)
     {
-        bool found{false};
-        get_key_reference(index, found);
+        auto i = get_key_reference(index);
+        bool found{i != size_};
         return found;
     }
 
@@ -60,9 +60,10 @@ private:
         values_ = static_cast<TValue *>(realloc(values_, max_size_ * sizeof(TValue)));
     }
 
-    TKey get_key_reference(TKey index, bool &found)
+    TKey get_key_reference(TKey index)
     {
         TKey i{};
+        bool found{false};
         for (; i < size_ && !found; ++i)
         {
             if (keys_[i] == index)
