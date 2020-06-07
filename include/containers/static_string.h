@@ -97,6 +97,17 @@ public:
     return operator+=(in.c_str());
   }
 
+  __static_string operator+(__static_string &&in)
+  {
+    __static_string result{*this};
+    return result + in.c_str();
+  }
+
+  __static_string &operator+=(__static_string &&in)
+  {
+    return operator+=(in.c_str());
+  }
+
   __static_string &operator+=(const char *in)
   {
     return operator+(in);
