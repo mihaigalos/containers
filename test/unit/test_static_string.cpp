@@ -225,3 +225,23 @@ TEST_F(Fixture, OperatorPlusCharWorks_WhenTypical)
 
     ASSERT_EQ(myString, containers::static_string<>{"FooBarB"});
 }
+
+containers::static_string<> get()
+{
+    containers::static_string<> result{};
+    return result;
+}
+
+TEST_F(Fixture, SizeZero_WhenReturned)
+{
+    containers::static_string<> myString = get();
+
+    ASSERT_EQ(myString.size(), 0);
+}
+
+TEST_F(Fixture, SizeZero_WhenReturnedMoved)
+{
+    containers::static_string<> myString = std::move(get());
+
+    ASSERT_EQ(myString.size(), 0);
+}

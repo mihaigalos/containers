@@ -28,7 +28,10 @@ public:
   __static_string(__static_string &&other)
   {
     this->size_ = 0;
-    append(other.c_str());
+    if (other.size_)
+    {
+      append(other.c_str());
+    }
   }
 
   __static_string &operator=(__static_string &other)
