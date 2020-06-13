@@ -230,6 +230,17 @@ TEST_F(Fixture, OperatorPlusCharWorks_WhenTypical)
     ASSERT_EQ(myString, containers::static_string<>{"FooBarB"});
 }
 
+TEST_F(Fixture, OperatorPlusNullIgnores_WhenTypical)
+{
+    containers::static_string<> myString = {"FooBar"};
+    auto expected = myString.size();
+
+    myString = myString + '\0';
+    auto actual = myString.size();
+
+    ASSERT_EQ(actual, expected);
+}
+
 containers::static_string<> get()
 {
     containers::static_string<> result{};

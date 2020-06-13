@@ -118,9 +118,12 @@ public:
 
   __static_string &operator+(const char in)
   {
-    remove_end();
-    this->push_back(in);
-    add_end(this->size_);
+    if (in != '\0')
+    {
+      remove_end();
+      this->push_back(in);
+      add_end(this->size_);
+    }
     return *this;
   }
 
