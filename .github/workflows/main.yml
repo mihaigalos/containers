@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and Test
         run: |
-          bazel test --color=yes --config=buildbuddy //... > >(tee -a /tmp/test.log) 2>&1
+          bazel test --color=yes //... > >(tee -a /tmp/test.log) 2>&1
 
   converage:
     runs-on: ubuntu-20.04
