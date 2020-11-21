@@ -118,7 +118,7 @@ public:
 
   __static_string &operator+(const char in)
   {
-    if (!isEncrypted && in != '\0')
+    if (in != '\0')
     {
       remove_end();
       this->push_back(in);
