@@ -260,3 +260,11 @@ TEST_F(Fixture, SizeZero_WhenReturnedMoved)
 
     ASSERT_EQ(myString.size(), 0);
 }
+
+TEST_F(Fixture, EncryptedStringOperatorEquals_PartialMatch_WhenTypical)
+{
+    containers::static_string_encrypted<> myString1{"FooBar"};
+    containers::static_string_encrypted<> myString2{"FooBar\0Bla"};
+
+    ASSERT_EQ(myString1, myString2);
+}

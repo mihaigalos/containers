@@ -8,7 +8,7 @@
 namespace containers
 {
 
-template <typename TSize = uint8_t, TSize MaxSize = 15>
+template <typename TSize = uint8_t, TSize MaxSize = 15, bool isEncrypted = false>
 class __static_string : public static_vector<TSize, MaxSize>
 {
 public:
@@ -60,9 +60,9 @@ public:
   {
     bool result{true};
 
-    if (this->size_ == rhs.size_)
+    if (isEncrypted || this->size_ == rhs.size_)
     {
-      for (TSize i = 0; i < rhs.size_; ++i)
+      for (TSize i = 0; i < this->size_; ++i)
       {
         // TODO: implement static_map::const operator[](const) const
         if ((*const_cast<__static_string *>(this))[i] !=
@@ -118,7 +118,7 @@ public:
 
   __static_string &operator+(const char in)
   {
-    if (in != '\0')
+    if (!isEncrypted && in != '\0')
     {
       remove_end();
       this->push_back(in);
@@ -162,5 +162,8 @@ private:
 
 template <unsigned MaxSize = 15>
 using static_string = __static_string<Size_t_impl<MaxSize>, MaxSize>;
+
+template <unsigned MaxSize = 15>
+using static_string_encrypted = __static_string<Size_t_impl<MaxSize>, MaxSize, true>;
 
 } // namespace containers
