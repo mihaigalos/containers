@@ -135,14 +135,14 @@ public:
 private:
   void remove_end()
   {
-    if (this->size_ && (*this)[this->size_ - 1] == '\0')
+    if (!isEncrypted && this->size_ && (*this)[this->size_ - 1] == '\0')
     {
       --this->size_;
     }
   }
   void add_end(TSize position)
   {
-    if (position < MaxSize)
+    if (!isEncrypted && position < MaxSize)
     {
       this->push_back('\0');
     }
