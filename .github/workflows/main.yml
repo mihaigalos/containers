@@ -49,6 +49,4 @@ jobs:
         run: |
           bazel coverage --combined_report=lcov --sandbox_base=/run/shm //...
           genhtml bazel-out/_coverage/_coverage_report.dat --output-directory coverage
-          ./scripts/push_test_coverage.sh
-          ./scripts/cl1p_build_buddy_invocation.sh
           ./scripts/profiling.sh
