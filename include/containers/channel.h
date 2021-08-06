@@ -7,7 +7,7 @@
 namespace containers
 {
 
-template <typename TData, typename TAddress, typename TPort, typename TLength, typename TProxy>
+template <typename TData, typename TAddress, typename TPort, typename TProxy>
 
 class channel{
 public:
