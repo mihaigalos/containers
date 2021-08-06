@@ -16,8 +16,8 @@ class Fixture : public ::testing::Test
 
 class Foo{
     public:
-    void Transmit(const auto &data) const{
-        std::cout<< "Transmit(): "<<data<<std::endl;
+    void Transmit(const int source, const int destination, const auto &data) const{
+        std::cout<< "Transmit() "<<source<<" -> "<<destination<<": "<<data<<std::endl;
         buffer_ += data;
     }
 };
