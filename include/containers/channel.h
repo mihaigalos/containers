@@ -7,14 +7,14 @@
 namespace containers
 {
 
-template <typename TData, typename TAddress, typename TLength, typename TProxy>
+template <typename TData, typename TAddress, typename TPort, typename TLength, typename TProxy>
 
 class channel{
 public:
     channel() = delete;
-    channel(const TProxy& proxy, const TAddress source, const TAddress destination, void(TProxy::*handler)(TAddress, TAddress, const TData&) const) : proxy_{proxy}, source_{source}, destination_{destination}, handler_{handler} {}
+    channel(const TProxy& proxy, const TAddress source, const TAddress destination, TPort port, void(TProxy::*handler)(TAddress, TAddress, TPort, const TData&) const) : proxy_{proxy}, source_{source}, destination_{destination}, port_{port}, handler_{handler} {}
     const channel& operator << (const TData& data) const{
-        (proxy_.*handler_)(source_, destination_, data);
+        (proxy_.*handler_)(source_, destination_, port_, data);
         return *this;
     }
 
@@ -27,6 +27,7 @@ private:
     const TProxy& proxy_;
     const TAddress source_{0};
     const TAddress destination_{0};
-    void (TProxy::*handler_)(TAddress, TAddress, const TData&) const{nullptr}; 
+    const TAddress port_{0};
+    void (TProxy::*handler_)(TAddress, TAddress, TPort, const TData&) const{nullptr}; 
 };
 }

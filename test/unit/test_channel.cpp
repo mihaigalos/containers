@@ -16,8 +16,8 @@ class Fixture : public ::testing::Test
 
 class Foo{
     public:
-    void Transmit(const auto source, const auto destination, const auto &data) const{
-        std::cout<< "Transmit() "<<source<<" -> "<<destination<<": "<<data<<std::endl;
+    void Transmit(const auto source, const auto destination, const auto port, const auto &data) const{
+        std::cout<< "Transmit() "<<source<<" -> "<<destination<<":"<<port<<" "<<data<<std::endl;
         buffer_ += data;
     }
 };
@@ -27,10 +27,11 @@ TEST_F(Fixture, ChannelCallsProxyTransmit_WhenTypical)
     Foo proxy{};
     const int kSource{1};
     const int kDestination{2};
+    const int kPort{1024};
     const int kLength{1};
     std::string expected = "abc";
     
-    containers::channel<char, decltype(kSource), decltype(kLength), Foo> channel {proxy, kSource, kDestination, &Foo::Transmit};
+    containers::channel<char, decltype(kSource), decltype(kPort), decltype(kLength), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
     channel << 'a' << 'b' << 'c';
 
     ASSERT_EQ(buffer_, expected);
@@ -41,10 +42,11 @@ TEST_F(Fixture, ChannelCallsProxyTransmit_WhenStringPayloadType)
     Foo proxy{};
     const int kSource{1};
     const int kDestination{2};
+    const int kPort{1024};
     const int kLength{1};
     std::string expected = "abc";
     
-    containers::channel<std::string, decltype(kSource), decltype(kLength), Foo> channel {proxy, kSource, kDestination, &Foo::Transmit};
+    containers::channel<std::string, decltype(kSource), decltype(kPort), decltype(kLength), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
     channel << "abc";
 
     ASSERT_EQ(buffer_, expected);
