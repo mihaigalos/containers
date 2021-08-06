@@ -25,8 +25,8 @@ public:
 
 private:
     const TProxy& proxy_;
-    const TAddress source_;
-    const TAddress destination_;
-    void (TProxy::*handler_)(TAddress, TAddress, const TData&) const; 
+    const TAddress source_{0};
+    const TAddress destination_{0};
+    void (TProxy::*handler_)(TAddress, TAddress, const TData&) const{nullptr}; 
 };
 }
