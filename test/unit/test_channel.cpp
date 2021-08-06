@@ -25,9 +25,7 @@ class Foo{
 TEST_F(Fixture, ChannelCallsProxyTransmit_WhenTypical)
 {
     Foo proxy{};
-    const int kSource{1};
-    const int kDestination{2};
-    const int kPort{1024};
+    const int kSource{1}, kDestination{2}, kPort{1024};
     std::string expected = "abc";
     
     containers::channel<char, decltype(kSource), decltype(kDestination), decltype(kPort), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
@@ -39,9 +37,7 @@ TEST_F(Fixture, ChannelCallsProxyTransmit_WhenTypical)
 TEST_F(Fixture, ChannelCallsProxyTransmit_WhenStringPayloadType)
 {
     Foo proxy{};
-    const int kSource{1};
-    const int kDestination{2};
-    const int kPort{1024};
+    const int kSource{1}, kDestination{2}, kPort{1024};
     std::string expected = "abc";
     
     containers::channel<std::string, decltype(kSource), decltype(kDestination), decltype(kPort), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
