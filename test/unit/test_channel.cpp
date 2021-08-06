@@ -30,7 +30,7 @@ TEST_F(Fixture, ChannelCallsProxyTransmit_WhenTypical)
     const int kPort{1024};
     std::string expected = "abc";
     
-    containers::channel<char, decltype(kSource), decltype(kPort), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
+    containers::channel<char, decltype(kSource), decltype(kDestination), decltype(kPort), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
     channel << 'a' << 'b' << 'c';
 
     ASSERT_EQ(buffer_, expected);
@@ -44,7 +44,7 @@ TEST_F(Fixture, ChannelCallsProxyTransmit_WhenStringPayloadType)
     const int kPort{1024};
     std::string expected = "abc";
     
-    containers::channel<std::string, decltype(kSource), decltype(kPort), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
+    containers::channel<std::string, decltype(kSource), decltype(kDestination), decltype(kPort), Foo> channel {proxy, kSource, kDestination, kPort, &Foo::Transmit};
     channel << "abc";
 
     ASSERT_EQ(buffer_, expected);
