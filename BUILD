@@ -5,8 +5,9 @@ package(default_visibility = ["//visibility:public"])
 DEFAULT_COMPILER_OPTIONS = [
     "-DLOGGING",
     "-DTESTING",
+    "-fconcepts",
     "-fdiagnostics-color",
-    "-std=c++14",
+    "-std=c++17",
     "-Wall",
     "-Werror",
     "-Wextra",
