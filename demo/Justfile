@@ -3,7 +3,7 @@ set shell := ["bash", "-c"]
 _default:
     @just --list
 
-test:
+build:
     #!/bin/bash
     set -euxo pipefail
     for i in $(ls *.cpp); do 
