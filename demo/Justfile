@@ -1,0 +1,14 @@
+set shell := ["bash", "-c"]
+
+_default:
+    @just --list
+
+build:
+    #!/bin/bash
+    set -euxo pipefail
+    for i in $(ls *.cpp); do 
+        input=$(echo $i | cut -d'.' -f1)
+        avr-gcc -std=c++17 -Os -mmcu=atmega328p  $input.cpp -o $input
+        avr-size $input
+    done
+
