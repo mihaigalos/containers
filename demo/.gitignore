@@ -1,0 +1,4 @@
+avr_main_dynamic_map
+avr_main_static_map
+avr_main_static_string
+avr_main_static_vector

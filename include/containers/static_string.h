@@ -8,7 +8,7 @@
 namespace containers
 {
 
-template <typename TSize = uint8_t, TSize MaxSize = 15>
+template <typename TSize = uint8_t, TSize MaxSize = 15, bool isEncrypted = false>
 class __static_string : public static_vector<TSize, MaxSize>
 {
 public:
@@ -28,7 +28,10 @@ public:
   __static_string(__static_string &&other)
   {
     this->size_ = 0;
-    append(other.c_str());
+    if (other.size_)
+    {
+      append(other.c_str());
+    }
   }
 
   __static_string &operator=(__static_string &other)
@@ -57,9 +60,9 @@ public:
   {
     bool result{true};
 
-    if (this->size_ == rhs.size_)
+    if (isEncrypted || this->size_ == rhs.size_)
     {
-      for (TSize i = 0; i < rhs.size_; ++i)
+      for (TSize i = 0; i < this->size_; ++i)
       {
         // TODO: implement static_map::const operator[](const) const
         if ((*const_cast<__static_string *>(this))[i] !=
@@ -87,6 +90,27 @@ public:
     return *this;
   }
 
+  __static_string &operator+(__static_string &in)
+  {
+    return operator+(in.c_str());
+  }
+
+  __static_string &operator+=(__static_string &in)
+  {
+    return operator+=(in.c_str());
+  }
+
+  __static_string operator+(__static_string &&in)
+  {
+    __static_string result{*this};
+    return result + in.c_str();
+  }
+
+  __static_string &operator+=(__static_string &&in)
+  {
+    return operator+=(in.c_str());
+  }
+
   __static_string &operator+=(const char *in)
   {
     return operator+(in);
@@ -94,9 +118,12 @@ public:
 
   __static_string &operator+(const char in)
   {
-    remove_end();
-    this->push_back(in);
-    add_end(this->size_);
+    if (in != '\0')
+    {
+      remove_end();
+      this->push_back(in);
+      add_end(this->size_);
+    }
     return *this;
   }
 
@@ -108,14 +135,14 @@ public:
 private:
   void remove_end()
   {
-    if (this->size_ && (*this)[this->size_ - 1] == '\0')
+    if (!isEncrypted && this->size_ && (*this)[this->size_ - 1] == '\0')
     {
       --this->size_;
     }
   }
   void add_end(TSize position)
   {
-    if (position < MaxSize)
+    if (!isEncrypted && position < MaxSize)
     {
       this->push_back('\0');
     }
@@ -135,5 +162,8 @@ private:
 
 template <unsigned MaxSize = 15>
 using static_string = __static_string<Size_t_impl<MaxSize>, MaxSize>;
+
+template <unsigned MaxSize = 15>
+using static_string_encrypted = __static_string<Size_t_impl<MaxSize>, MaxSize, true>;
 
 } // namespace containers
