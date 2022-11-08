@@ -40,9 +40,9 @@ protected:
     TKey size_{};
 
 private:
-    containers::tuple<TKey, TFound> get_key_reference(TKey index)
+    tuple<TKey, TFound> get_key_reference(TKey index)
     {
-        containers::tuple<TKey, TFound> result{};
+        tuple<TKey, TFound> result{};
         for (; result.t1 < size_; ++result.t1)
         {
             if (keys_[result.t1] == index)
