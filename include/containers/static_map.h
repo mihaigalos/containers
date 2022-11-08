@@ -7,6 +7,8 @@
 namespace containers
 {
 
+using TFound = bool;
+
 template <typename TKey, typename TValue, TKey MaxSize>
 class static_map
 {
@@ -26,7 +28,7 @@ public:
         return values_[index_in_keys];
     }
 
-    bool ContainsKey(TKey index)
+    TFound ContainsKey(TKey index)
     {
         auto [_, found] = get_key_reference(index);
         return found;
@@ -38,9 +40,9 @@ protected:
     TKey size_{};
 
 private:
-    containers::tuple<TKey, bool> get_key_reference(TKey index)
+    containers::tuple<TKey, TFound> get_key_reference(TKey index)
     {
-        containers::tuple<TKey, bool> result{};
+        containers::tuple<TKey, TFound> result{};
         for (; result.t1 < size_; ++result.t1)
         {
             if (keys_[result.t1] == index)
