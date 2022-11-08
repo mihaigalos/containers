@@ -44,11 +44,10 @@ jobs:
         with:
           just-version: 0.10.2  # optional semver specification, otherwise latest
 
-
-      - name: Build and Test
+      - name: Build
         run: |
           cd demo
-          just test
+          just build
 
   converage:
     runs-on: ubuntu-latest
