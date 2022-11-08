@@ -11,8 +11,8 @@ on:
   pull_request:
 
 jobs:
-  build_and_test:
-    runs-on: ubuntu-20.04
+  gcc:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -27,9 +27,24 @@ jobs:
       - name: Build and Test
         run: |
           bazel test --color=yes //... > >(tee -a /tmp/test.log) 2>&1
+  avr-gcc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: extractions/setup-just@v1
+        with:
+          just-version: 0.10.2  # optional semver specification, otherwise latest
+
+
+      - name: Build and Test
+        run: |
+          cd demo
+          just test
 
   converage:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
