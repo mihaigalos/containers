@@ -33,6 +33,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: |
+          sudo apt install \
+            avr-libc \
+            binutils \
+            gcc-avr
+
       - uses: extractions/setup-just@v1
         with:
           just-version: 0.10.2  # optional semver specification, otherwise latest
