@@ -12,7 +12,7 @@ on:
 
 jobs:
   gcc:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
         run: |
           bazel test --color=yes //... > >(tee -a /tmp/test.log) 2>&1
   avr-gcc:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
           just build
 
   converage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v2
