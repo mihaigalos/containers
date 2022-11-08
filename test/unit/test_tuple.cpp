@@ -18,3 +18,4 @@ TEST_F(Fixture, TupleWorks_WhenTypical)
     ASSERT_EQ(first, 3);
     ASSERT_EQ(second, 5);
 }
+
