@@ -5,6 +5,13 @@
 namespace containers
 {
 
+
+template <typename TKey>
+struct TKeyRefResult {
+    TKey keypos_{};
+    bool found_{false};
+};
+
 template <typename TKey, typename TValue, TKey MaxSize>
 class static_map
 {
@@ -14,21 +21,19 @@ public:
 
     TValue &operator[](TKey index)
     {
-        TKey i = get_key_reference(index);
-        bool found{i != size_};
+        auto [keypos, found]  = get_key_reference(index);
 
         if (!found && size_ < MaxSize)
         {
             keys_[size_++] = index;
         }
-        TKey index_in_keys = keys_[i];
+        TKey index_in_keys = keys_[keypos];
         return values_[index_in_keys];
     }
 
     bool ContainsKey(TKey index)
     {
-        auto i = get_key_reference(index);
-        bool found{i != size_};
+        auto [_, found] = get_key_reference(index);
         return found;
     }
 
@@ -38,19 +43,18 @@ protected:
     TKey size_{};
 
 private:
-    TKey get_key_reference(TKey index)
+    TKeyRefResult<TKey> get_key_reference(TKey index)
     {
-        TKey i{};
-        bool found{false};
-        for (; i < size_ && !found; ++i)
+        TKeyRefResult<TKey> result{};
+        for (; result.keypos_ < size_; ++result.keypos_)
         {
-            if (keys_[i] == index)
+            if (keys_[result.keypos_] == index)
             {
-                found = true;
+                result.found_ = true;
                 break;
             }
         }
-        return i;
+        return result;
     }
 };
 
