@@ -2,15 +2,10 @@
 
 #include <stdint.h>
 
+#include "tuple.h"
+
 namespace containers
 {
-
-
-template <typename TKey>
-struct TKeyRefResult {
-    TKey keypos_{};
-    bool found_{false};
-};
 
 template <typename TKey, typename TValue, TKey MaxSize>
 class static_map
@@ -43,14 +38,14 @@ protected:
     TKey size_{};
 
 private:
-    TKeyRefResult<TKey> get_key_reference(TKey index)
+    containers::tuple<TKey, bool> get_key_reference(TKey index)
     {
-        TKeyRefResult<TKey> result{};
-        for (; result.keypos_ < size_; ++result.keypos_)
+        containers::tuple<TKey, bool> result{};
+        for (; result.t1 < size_; ++result.t1)
         {
-            if (keys_[result.keypos_] == index)
+            if (keys_[result.t1] == index)
             {
-                result.found_ = true;
+                result.t2 = true;
                 break;
             }
         }
