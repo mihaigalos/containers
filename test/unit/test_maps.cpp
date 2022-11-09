@@ -145,3 +145,16 @@ TYPED_TEST(Fixture, ContainsKeyFalse_WhenTypical)
 
     ASSERT_EQ(actual, expected);
 }
+
+TYPED_TEST(Fixture, AddDoesNotCorrupt_WhenTypical)
+{
+    auto expected = DemoStructure{9, 10};
+
+    for(uint16_t i =0;i<10;++i){
+        this->sut_[i] = DemoStructure{i, static_cast<uint16_t>(i+1)};
+    }
+
+    auto actual = this->sut_[9];
+
+    ASSERT_EQ(actual, expected);
+}
