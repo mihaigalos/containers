@@ -160,17 +160,3 @@ TYPED_TEST(Fixture, AddDoesNotCorrupt_WhenTypical)
 
     ASSERT_EQ(actual, expected);
 }
-
-TYPED_TEST(Fixture, GuardsAgainstCorruption_WhenTypical)
-{
-    auto expected = DemoStructure{11, 12};
-
-    for(uint16_t i =0; i < kMapSize + 2; ++i){
-        this->sut_[i] = DemoStructure{i, static_cast<uint16_t>(i + 1)};
-    }
-
-    auto actual1 = this->sut_[10];
-    ASSERT_EQ(actual1, expected);
-    auto actual2 = this->sut_[11];
-    ASSERT_EQ(actual2, expected);
-}
