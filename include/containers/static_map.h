@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <stdint.h>
 
 namespace containers
@@ -15,11 +16,18 @@ public:
     TValue &operator[](TKey index)
     {
         TKey i = get_key_reference(index);
+        std::cout<<i<<std::endl;
         bool found{i != size_};
 
-        if (!found && size_ < MaxSize)
+        if (!found)
         {
-            keys_[size_++] = index;
+            if(size_ < MaxSize)
+            {
+                keys_[size_++] = index;
+            } else {
+                std::cout<<"Out of bounds: "<<i<<std::endl;
+                return out_of_bounds_value_;
+            }
         }
         TKey index_in_keys = keys_[i];
         return values_[index_in_keys];
@@ -35,6 +43,7 @@ public:
 protected:
     TKey keys_[MaxSize];
     TValue values_[MaxSize];
+    TValue out_of_bounds_value_{};
     TKey size_{};
 
 private:
