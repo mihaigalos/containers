@@ -6,6 +6,8 @@
 
 #include "test_common.h"
 
+static constexpr uint16_t kMapSize = 10;
+
 template <typename T>
 class Fixture : public ::testing::Test
 {
@@ -19,8 +21,8 @@ protected:
     T sut_;
 };
 
-using MyTypes = ::testing::Types<containers::dynamic_map<uint16_t, DemoStructure, 10>,
-                                 containers::static_map<uint16_t, DemoStructure, 10>>;
+using MyTypes = ::testing::Types<containers::dynamic_map<uint16_t, DemoStructure, kMapSize>,
+                                 containers::static_map<uint16_t, DemoStructure, kMapSize>>;
 
 TYPED_TEST_SUITE(Fixture, MyTypes);
 
@@ -150,7 +152,7 @@ TYPED_TEST(Fixture, AddDoesNotCorrupt_WhenTypical)
 {
     auto expected = DemoStructure{9, 10};
 
-    for(uint16_t i =0;i<10;++i){
+    for(uint16_t i =0;i<kMapSize;++i){
         this->sut_[i] = DemoStructure{i, static_cast<uint16_t>(i+1)};
     }
 
