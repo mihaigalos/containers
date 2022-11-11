@@ -6,11 +6,12 @@ namespace containers
 {
 
 template <typename T1, typename T2>
-class tuple
+struct tuple
 {
-public:
     T1 t1;
     T2 t2;
+
+    tuple():t1{}, t2{} {}
 
     template <typename Tr1, typename Tr2>
     tuple(Tr1 &&first, Tr2 &&second) : t1(forward<Tr1>(first)), t2(forward<Tr2>(second)) {}

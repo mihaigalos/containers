@@ -2,8 +2,12 @@
 
 #include <stdint.h>
 
+#include "tuple.h"
+
 namespace containers
 {
+
+using TFound = bool;
 
 template <typename TKey, typename TValue, TKey MaxSize>
 class static_map
@@ -14,8 +18,7 @@ public:
 
     TValue &operator[](TKey index)
     {
-        TKey i = get_key_reference(index);
-        bool found{i != size_};
+        auto [keypos, found]  = get_key_reference(index);
 
         if (!found)
         {
@@ -26,14 +29,13 @@ public:
                 return out_of_bounds_value_;
             }
         }
-        TKey index_in_keys = keys_[i];
+        TKey index_in_keys = keys_[keypos];
         return values_[index_in_keys];
     }
 
-    bool ContainsKey(TKey index)
+    TFound ContainsKey(TKey index)
     {
-        auto i = get_key_reference(index);
-        bool found{i != size_};
+        auto [_, found] = get_key_reference(index);
         return found;
     }
 
@@ -44,19 +46,18 @@ protected:
     TKey size_{};
 
 private:
-    TKey get_key_reference(TKey index)
+    tuple<TKey, TFound> get_key_reference(TKey index)
     {
-        TKey i{};
-        bool found{false};
-        for (; i < size_ && !found; ++i)
+        tuple<TKey, TFound> result{};
+        for (; result.t1 < size_; ++result.t1)
         {
-            if (keys_[i] == index)
+            if (keys_[result.t1] == index)
             {
-                found = true;
+                result.t2 = true;
                 break;
             }
         }
-        return i;
+        return result;
     }
 };
 
